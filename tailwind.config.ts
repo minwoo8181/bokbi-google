@@ -133,7 +133,8 @@ const config: Config = {
   plugins: [
     // 🧪 design-lab: 레퍼런스 테마일 때만 붙는 표기 (예: samjeom:pb-0). 색 토큰만으로 안 되는 모양 차이에 쓴다
     plugin(({ addVariant }) => {
-      addVariant("samjeom", '[data-theme="samjeom"] &');
+      // 삼쩜삼 심화(samjeom2)는 삼쩜삼 색·부품을 그대로 쓴다
+      addVariant("samjeom", ':is([data-theme="samjeom"], [data-theme="samjeom2"]) &');
       addVariant("heydealer", '[data-theme="heydealer"] &');
     }),
   ],

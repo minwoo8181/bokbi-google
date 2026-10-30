@@ -8,7 +8,7 @@
  * 레퍼런스 테마는 화면 구성까지 바꾼다 (components/lab/<테마>/, LabThemeView·useLabTheme로 고름)
  */
 
-export type ThemePreset = 'toss' | 'samjeom' | 'heydealer';
+export type ThemePreset = 'toss' | 'samjeom' | 'samjeom2' | 'heydealer';
 
 export interface ThemeDefinition {
   id: ThemePreset;
@@ -30,6 +30,13 @@ export const THEME_PRESETS: Record<ThemePreset, ThemeDefinition> = {
     id: 'samjeom',
     name: '삼쩜삼 레퍼런스',
     description: '파랑 (#2377F7) + 구획 제목·흰 카드 홈, 연파랑 머리 띠 리포트형 분석 (화면 구성까지 바뀜)',
+    primaryColor: '#2377F7',
+    lightColor: '#E9F2FF',
+  },
+  samjeom2: {
+    id: 'samjeom2',
+    name: '삼쩜삼 심화',
+    description: '삼쩜삼 색·부품 그대로 + "질문 말풍선 → 답 카드" 리포트 흐름 (의문을 다 풀고 매칭 요청, 중개사 입구 두 곳)',
     primaryColor: '#2377F7',
     lightColor: '#E9F2FF',
   },

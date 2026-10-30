@@ -67,6 +67,85 @@ export const LAB_CONTENT = {
       barLegal: '법정 상한 {amount}',
     },
   },
+  /**
+   * 삼쩜삼 심화 (2026-10-30 대표님 "더 심화, 매칭 요청·중개사 가입이 중요"). 삼쩜삼 결과 리포트의 "내 질문 말풍선 → 답 카드" 흐름.
+   * 논증 순서 = 화면 순서 (taste copy §1): ① 무엇인가 → ② 결과가 이렇게 나온다(실제 예시) → ③ 집주인이 실제로 묻는 의문 3개 → ④ 행동.
+   * 중개사는 따로 한 구획 + 머리줄 오른쪽 입구. 숫자는 모두 데이터·엔진 값, 지어낸 실적 없음
+   */
+  samjeom2: {
+    header: { broker: '중개사라면' },
+    home: {
+      /** 32자 이하 두 줄 주장 (taste copy §2·§3 "The claim") */
+      title: '복비, 미리 정하고\n집을 내놓으세요',
+      lead: '단지만 고르면 적정 복비가 나오고, 그 금액에 동의한 중개사만 연락해요.',
+      previewTitle: '이런 리포트를 받아요',
+      previewCaption: '실제 다산동 실거래로 계산한 예시',
+      /** 미리 보기 화면 속 (K1 머리 띠 축소판) */
+      previewLead: '{label} 한 집 평균',
+      previewCap: '법정 상한',
+      previewLow: '{pct}% 낮게 정하면',
+      previewCut: '낮아져요',
+      previewBasis: '최근 1년 중개 매매 {n}건 평균',
+      askTitle: '집주인이 먼저 묻는 것',
+      /** 실제로 묻는 의문만 (taste copy "A question the reader did not ask" 금지) */
+      qa: [
+        {
+          q: '중개사가 정말 그 금액에 해 주나요?',
+          a: '합의 복비를 보고 동의한 중개사만 요청을 보내요',
+          rows: [
+            { label: '요청 보내기', value: '동의한 중개사' },
+            { label: '고르기', value: '집주인 · 최대 3곳' },
+            { label: '요청 기간', value: '48시간' },
+          ],
+        },
+        {
+          q: '동·호수가 동네에 알려지지 않나요?',
+          a: '고른 중개사에게만 열려요',
+          rows: [
+            { label: '단지 · 평형', value: '보여요' },
+            { label: '동·호수', value: '매칭 후 공개' },
+            { label: '연락처', value: '매칭 후 공개' },
+          ],
+        },
+        {
+          q: '어떤 중개사가 연락하나요?',
+          a: '다산동 등록 명단과 대조해 가입한 공인중개사예요',
+          rows: [
+            { label: '대조하는 명단', value: '다산동 중개사무소 {offices}곳' },
+            { label: '가입 확인', value: '사무소 번호로 확인 전화' },
+          ],
+        },
+      ],
+      askCta: '우리 단지 복비 보기',
+      /** 중개사 구획 (삼쩜삼 "개인사업자인가요?" 별도 구획) */
+      brokerTitle: '다산동 공인중개사인가요?',
+      brokerHead: '복비가 정해진 의뢰를\n집주인에게 직접 받아요',
+      brokerRows: [
+        { label: '의뢰', value: '집주인이 직접 맡긴 매물' },
+        { label: '복비', value: '요청 전에 이미 합의' },
+        { label: '주변 부동산', value: '내 매칭을 못 봐요' },
+      ],
+      brokerCta: '파트너 중개사 등록하기',
+      brokerMore: '어떻게 받는지 먼저 보기',
+    },
+    analysis: {
+      /** 리포트 질문 말풍선 (내 질문) */
+      askWhy: '왜 이 금액인가요?',
+      askHow: '할인율은 어떻게 정했나요?',
+      askDeal: '실제로 얼마에 거래됐나요?',
+      askBroker: '중개사가 이 금액을 받아 줄까요?',
+      askPrivacy: '내 정보는 언제 공개되나요?',
+      askPoll: '이웃들은 어떻게 생각할까요?',
+      brokerAnswer: '합의 복비에 동의한 중개사만 요청을 보내요',
+      privacyAnswer: '고른 중개사에게만, 매칭 후에 열려요',
+      /** 마지막 요약 = 삼쩜삼 "예상 환급내역" 파랑 카드 */
+      summaryLabel: '적정 복비',
+      summaryNote: '이 금액을 보고 동의한 중개사만 요청을 보내요',
+      summaryRows: { apt: '단지', cond: '조건', legal: '법정 상한' },
+      summaryChange: '조건 바꾸기',
+      brokerLink: '다산동 공인중개사라면 파트너 등록',
+    },
+  },
   /** 헤이딜러 레퍼런스 (2026-10-30). 숫자는 모두 기존 계산 결과, 문구만 헤이딜러 말투 */
   heydealer: {
     home: {

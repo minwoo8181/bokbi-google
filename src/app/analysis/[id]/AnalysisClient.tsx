@@ -22,8 +22,7 @@ import MatchingStickyBar from '@/components/analysis/MatchingStickyBar';
 import MatchingBottomSheetModal from '@/components/analysis/MatchingBottomSheetModal';
 import { useAnalysisTracking } from '@/components/analysis/useAnalysisTracking';
 import { useLabTheme } from '@/components/lab/useLabTheme';
-import SamjeomAnalysisBody from '@/components/lab/samjeom/SamjeomAnalysisBody';
-import HeydealerAnalysisBody from '@/components/lab/heydealer/HeydealerAnalysisBody';
+import LabAnalysisBody from '@/components/lab/LabAnalysisBody';
 import {
   TradeType,
   FloorCategory,
@@ -232,27 +231,10 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
 
   return (
     <div className="flex flex-col min-h-[100dvh] bg-surface-page pb-28 samjeom:pb-0 heydealer:pb-0">
-      {labTheme === 'samjeom' ? (
-        <SamjeomAnalysisBody
-          apartment={apartment}
-          pyeongList={pyeongList}
-          selectedPyeong={selectedPyeong}
-          onSelectPyeong={setSelectedPyeongId}
-          tradeType={tradeType}
-          onChangeTradeType={setTradeType}
-          floorCategory={floorCategory}
-          onSelectFloor={setFloorCategory}
-          reference={reference}
-          recommendation={recommendation}
-          totalCommissionWon={totalCommissionWon}
-          legalMaxWon={quote.legal.maxWon}
-          onBack={() => router.push('/')}
-          onShare={handleShare}
-          onOpenModal={() => setIsModalOpen(true)}
-          sections={{ chart: chartCard, reason: reasonCard, poll: debatePoll }}
-        />
-      ) : labTheme === 'heydealer' ? (
-        <HeydealerAnalysisBody
+      {labTheme !== 'toss' ? (
+        // design-lab 레퍼런스 테마: 같은 계산 값으로 배치만 다른 화면 (components/lab/LabAnalysisBody)
+        <LabAnalysisBody
+          theme={labTheme}
           apartment={apartment}
           complexInfo={complexInfo}
           pyeongList={pyeongList}

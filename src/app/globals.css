@@ -184,7 +184,7 @@
    - 회색 바탕 #F4F6F8 위 "카드 밖 구획 제목 → 흰 카드" 묶음, 카드 안 폭 꽉 찬 파랑 버튼
    - 리포트 화면: 연파랑 머리 띠 #E9F2FF + 두 줄 큰 문장(핵심 숫자만 파랑) + 막대 비교 그래프 + 이전·다음 두 버튼
    - 파랑 #2377F7 한 가지, 비교 막대만 노랑 (--lab-compare) */
-[data-theme="samjeom"] {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) {
   --brand-primary: #2377F7;
   /* 연파랑 위 작은 글씨용으로도 쓰여 한 단계 진하게 (#E9F2FF 위 4.9:1) */
   --brand-primary-hover: #1A62D6;
@@ -213,7 +213,7 @@
 }
 
 /* 리포트 구획 줄(.lab-flat)의 바로 아래 칸: 원래 카드 상자 → 회색 띠로 나눈 납작한 흰 구획 */
-[data-theme="samjeom"] .lab-flat > * {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flat > * {
   border-radius: 0;
   border: 0;
   box-shadow: none;
@@ -221,54 +221,54 @@
   padding: 32px 20px;
 }
 /* 포커스·눌림 (2026-10-30 스킬 점검: 버튼 19개에 포커스 표시 0개 — web-design-guidelines Focus, ui-ux-pro-max pro-rules Interaction) */
-[data-theme="samjeom"] :is(a, button, [role="radio"]):focus-visible {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) :is(a, button, [role="radio"]):focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 2px;
 }
-[data-theme="samjeom"] :is(a, button, [role="radio"]) {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) :is(a, button, [role="radio"]) {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition-property: opacity, transform, background-color, border-color, color;
   transition-duration: 120ms;
 }
-[data-theme="samjeom"] :is(a, button, [role="radio"]):active {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) :is(a, button, [role="radio"]):active {
   opacity: 0.72;
 }
 /* 투표 이전·다음 화살표: 보이는 크기 그대로, 누르는 영역만 44px (스킬 점검: 24px) */
-[data-theme="samjeom"] .lab-flat button[aria-label$="투표 주제"] {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flat button[aria-label$="투표 주제"] {
   min-width: 44px;
   min-height: 44px;
 }
 /* 추천 이유 카드: 제목·숫자 칸 3개는 킵 K2와 같은 사실이라 숨기고 "추천 할인 계산" 구획으로만 (스킬 점검: 같은 사실 2~3번) */
-[data-theme="samjeom"] .lab-reason [data-testid="reason-card"] {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-reason [data-testid="reason-card"] {
   padding: 0;
   border: 0;
   border-radius: 0;
   box-shadow: none;
 }
-[data-theme="samjeom"] .lab-reason [data-testid="reason-card"] > div:first-child,
-[data-theme="samjeom"] .lab-reason [data-testid="reason-summary"] > .grid {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-reason [data-testid="reason-card"] > div:first-child,
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-reason [data-testid="reason-summary"] > .grid {
   display: none;
 }
 /* 실거래 그래프 축 날짜 11px·막대 위 거래 수 10px → 12px (스킬 점검: 글자 12px 이상, ui-ux-pro-max §6 · taste 앱 §6.3) */
 /* 막대 위 거래 수는 Recharts가 style="font-size:10px"를 직접 붙여 !important로 덮는다 (2026-10-30 헤이딜러 점검에서 발견) */
-[data-theme="samjeom"] [data-testid="trade-card"] svg :is(text, tspan) {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) [data-testid="trade-card"] svg :is(text, tspan) {
   font-size: 12px !important;
 }
 /* 매칭 요청 = 신고 흐름 (SamjeomFlowShell): 단계 본문은 화면 높이를 다 쓰고, 맨 끝 버튼 줄은 바닥에 붙는다 */
-[data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"] {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flow [data-testid^="modal-step-"] {
   min-height: 100%;
   display: flex;
   flex-direction: column;
 }
 /* 질문 제목 20px → 26px (삼쩜삼 "이○○님의 23년 수입을 확인해 볼게요") */
-[data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"] h3 {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flow [data-testid^="modal-step-"] h3 {
   font-size: 26px;
   font-weight: 700;
   line-height: 1.35;
 }
 /* 버튼 줄: 내용이 짧으면 바닥으로 밀고, 길면 스크롤해도 바닥에 붙는다. 흰 띠(퍼짐 0 테두리 그림자)로 뒤 내용을 가린다 */
-[data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) > :last-child {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) > :last-child {
   margin-top: auto !important;
   position: sticky;
   bottom: 12px;
@@ -276,15 +276,15 @@
   box-shadow: 0 0 0 12px var(--bg-surface);
 }
 /* 버튼 줄(div)만 흰 바탕. 버튼 하나가 끝 칸인 단계(1단계)는 버튼 색을 덮지 않는다 */
-[data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) > div:last-child {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) > div:last-child {
   background: var(--bg-surface);
 }
-[data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flow [data-testid^="modal-step-"]:not([data-testid="modal-step-6"]) {
   padding-bottom: 12px;
 }
 /* 원래 카드 제목(17px)을 리포트 구획 제목 크기로 */
-[data-theme="samjeom"] .lab-flat > * > h2:first-child,
-[data-theme="samjeom"] .lab-flat > * > div:first-child h2 {
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flat > * > h2:first-child,
+:is([data-theme="samjeom"], [data-theme="samjeom2"]) .lab-flat > * > div:first-child h2 {
   font-size: 20px;
 }
 

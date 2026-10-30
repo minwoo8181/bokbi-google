@@ -1,12 +1,12 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { ArrowLeft, ChevronDown, ShieldCheck } from 'lucide-react';
+import { ShieldCheck } from 'lucide-react';
 import { SITE_CONTENT } from '@/config/siteContent';
 import { LAB_CONTENT } from '@/config/labContent';
 import { formatWon } from '@/lib/utils';
 import LabConditionSheet from '@/components/lab/LabConditionSheet';
-import KeepFeeReportHero from '@/components/lab/keeps/KeepFeeReportHero';
+import SamjeomReportHero from './SamjeomReportHero';
 import KeepSpeedCompare from '@/components/lab/keeps/KeepSpeedCompare';
 import type { ApartmentStat } from '@/types';
 import type {
@@ -18,7 +18,6 @@ import type {
 } from '@/components/analysis/types';
 
 const t = LAB_CONTENT.samjeom.analysis;
-const short = (name: string) => name.replace(/\s*\(.*\)$/, '');
 
 interface SamjeomAnalysisBodyProps {
   apartment: ApartmentStat;
@@ -60,54 +59,21 @@ export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
   }, []);
   const r = p.recommendation;
   const shortName = p.apartment.apt_name.replace(/\s*\([^)]*\)$/, '');
-  const band = SITE_CONTENT.analysis.floorSelector.bands[p.floorCategory].label;
-  const chips = [
-    { key: 'pyeong', value: short(p.selectedPyeong.name) },
-    { key: 'floor', value: band },
-    { key: 'trade', value: p.tradeType },
-  ];
 
   return (
     <div className="min-h-[100dvh] bg-surface-page pb-32">
-      <KeepFeeReportHero
-        top={
-          <div className="h-14 -mx-2 flex items-center justify-between">
-            <button type="button" onClick={p.onBack} aria-label="뒤로가기" className="w-11 h-11 flex items-center justify-center text-text-primary">
-              <ArrowLeft className="w-6 h-6" />
-            </button>
-            {/* 보이는 알약은 32px, 누르는 영역은 44px */}
-            <button type="button" onClick={p.onShare} className="h-11 px-2 flex items-center">
-              <span className="h-8 px-3 rounded-lg border border-border-default bg-surface-card text-[12px] font-medium text-text-secondary flex items-center">
-                {t.share}
-              </span>
-            </button>
-          </div>
-        }
-        contextLine={
-          <>
-            <p className="text-[15px] font-medium text-text-secondary truncate">{shortName}</p>
-            {/* 조건 칩: 금액이 어떤 집 기준인지 바로 위에서 보이고 바로 바꾼다 */}
-            <div className="mt-2 flex flex-wrap gap-2" data-testid="samjeom-condition-chips">
-              {chips.map((c) => (
-                <button
-                  key={c.key}
-                  type="button"
-                  onClick={() => setConditionOpen(true)}
-                  aria-label={t.conditionOpen.replace('{value}', c.value)}
-                  className="h-11 pl-4 pr-3 rounded-full bg-surface-card border border-border-default text-[13px] font-bold text-text-primary inline-flex items-center gap-1"
-                >
-                  {c.value}
-                  <ChevronDown className="w-4 h-4 text-text-tertiary" aria-hidden />
-                </button>
-              ))}
-            </div>
-          </>
-        }
-        totalWon={p.totalCommissionWon}
-        legalMaxWon={p.legalMaxWon}
-        reference={p.reference}
-        discountPct={r ? Math.round(r.discount * 100) : null}
+      <SamjeomReportHero
+        aptName={p.apartment.apt_name}
+        selectedPyeong={p.selectedPyeong}
+        floorCategory={p.floorCategory}
         tradeType={p.tradeType}
+        reference={p.reference}
+        recommendation={r}
+        totalCommissionWon={p.totalCommissionWon}
+        legalMaxWon={p.legalMaxWon}
+        onBack={p.onBack}
+        onShare={p.onShare}
+        onOpenCondition={() => setConditionOpen(true)}
       />
 
       {r && (

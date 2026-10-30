@@ -38,7 +38,7 @@ export default function MatchingBottomSheetModal(props: MatchingBottomSheetModal
   const close = () => onClose({ completed: modalStep === 'COMPLETE' });
 
   // design-lab: 삼쩜삼 테마는 아래 시트 대신 전체 화면 신고 흐름 (단계 화면·상태는 같은 것)
-  if (labTheme === 'samjeom') {
+  if (labTheme === 'samjeom' || labTheme === 'samjeom2') {
     return (
       <SamjeomFlowShell
         step={modalStep}
