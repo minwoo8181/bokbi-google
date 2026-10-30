@@ -23,6 +23,7 @@ import MatchingBottomSheetModal from '@/components/analysis/MatchingBottomSheetM
 import { useAnalysisTracking } from '@/components/analysis/useAnalysisTracking';
 import { useLabTheme } from '@/components/lab/useLabTheme';
 import SamjeomAnalysisBody from '@/components/lab/samjeom/SamjeomAnalysisBody';
+import HeydealerAnalysisBody from '@/components/lab/heydealer/HeydealerAnalysisBody';
 import {
   TradeType,
   FloorCategory,
@@ -230,7 +231,7 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
   );
 
   return (
-    <div className="flex flex-col min-h-[100dvh] bg-surface-page pb-28 samjeom:pb-0">
+    <div className="flex flex-col min-h-[100dvh] bg-surface-page pb-28 samjeom:pb-0 heydealer:pb-0">
       {labTheme === 'samjeom' ? (
         <SamjeomAnalysisBody
           apartment={apartment}
@@ -243,6 +244,27 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
           onSelectFloor={setFloorCategory}
           reference={reference}
           recommendation={recommendation}
+          totalCommissionWon={totalCommissionWon}
+          legalMaxWon={quote.legal.maxWon}
+          onBack={() => router.push('/')}
+          onShare={handleShare}
+          onOpenModal={() => setIsModalOpen(true)}
+          sections={{ chart: chartCard, reason: reasonCard, poll: debatePoll }}
+        />
+      ) : labTheme === 'heydealer' ? (
+        <HeydealerAnalysisBody
+          apartment={apartment}
+          complexInfo={complexInfo}
+          pyeongList={pyeongList}
+          selectedPyeong={selectedPyeong}
+          onSelectPyeong={setSelectedPyeongId}
+          tradeType={tradeType}
+          onChangeTradeType={setTradeType}
+          floorCategory={floorCategory}
+          onSelectFloor={setFloorCategory}
+          reference={reference}
+          recommendation={recommendation}
+          dealPriceWon={currentDealPriceWon}
           totalCommissionWon={totalCommissionWon}
           legalMaxWon={quote.legal.maxWon}
           onBack={() => router.push('/')}

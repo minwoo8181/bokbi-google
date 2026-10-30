@@ -67,4 +67,75 @@ export const LAB_CONTENT = {
       barLegal: '법정 상한 {amount}',
     },
   },
+  /** 헤이딜러 레퍼런스 (2026-10-30). 숫자는 모두 기존 계산 결과, 문구만 헤이딜러 말투 */
+  heydealer: {
+    home: {
+      /** 머리줄 글자 탭 (헤이딜러 "내차 팔 때 | 내차 살 때") */
+      tabOwner: '집 내놓을 때',
+      tabBroker: '중개사라면',
+      /** 둥근 판 위 큰 질문 (헤이딜러 "먼저, 내 차 시세를 알아볼까요?") */
+      question: '먼저, 우리 집 복비를\n알아볼까요?',
+      /** 전광판 (헤이딜러 메인 숫자판). 데이터 파일 사실 숫자만 */
+      boardTitle: '복비 엔진이 보는 다산동',
+      boardComplexes: '분석 단지',
+      boardTrades: '국토부 실거래',
+      boardListings: '지금 매물',
+      boardOffices: '중개사무소',
+      unitComplex: '{n}개',
+      unitCount: '{n}건',
+      unitOffice: '{n}곳',
+      /** 예시 단지 견적 목록 (헤이딜러 "실시간 견적" 펼침 카드) */
+      examplesTitle: '단지별 복비 예시',
+      examplesNote: '최근 1년 중개 매매 · 법정 상한 평균',
+      exampleSub: '실거래 {n}건',
+      exampleCapLabel: '상한 평균',
+      exampleCut: '{pct}% 낮게 정하면',
+      exampleCutValue: '{amount} 낮아져요',
+      /** 진행 상황 (헤이딜러 경매 "진행상황" 점선 타임라인) */
+      processTitle: '진행 순서',
+    },
+    menu: {
+      open: '메뉴 열기',
+      close: '메뉴 닫기',
+      requests: '내 의뢰',
+      me: '내 정보',
+      ownerGuide: '처음이라면? 이용 방법',
+      brokerGuide: '파트너 중개사 혜택',
+    },
+    analysis: {
+      share: '공유하기',
+      fix: '수정',
+      /** 처음 한 번 "수정" 옆 검은 말풍선 (헤이딜러 "실제 주행거리를 입력해보세요") */
+      tip: '내 집 평형·층으로 맞춰 보세요',
+      tipClose: '말풍선 닫기',
+      rowTrade: '거래',
+      rowPyeong: '평형',
+      rowFloor: '층',
+      rowDeal: '기준 실거래',
+      rowHouseholds: '세대수',
+      rowBuilt: '준공',
+      rowSchool: '초등학교',
+      rowParking: '주차',
+      more: '더보기',
+      less: '접기',
+      pyeongValue: '{name} · 전용 {area}㎡',
+      floorValue: '{band} ({range})',
+      householdsValue: '{n}세대',
+      builtValue: '{n}년',
+      schoolValue: '{name} 도보 {min}분',
+      parkingValue: '세대당 {n}대',
+      /** 시세 구획 (헤이딜러 "내차 예상시세 210~310만원") */
+      estimateTitle: '우리 집 적정 복비',
+      estimateSub: '법정 상한 {legal}보다 {pct}% 낮게',
+      estimateSame: '법정 상한 그대로',
+      /** 곡선 그래프: 할인율 → 복비 (commissionFromDiscount 그대로) */
+      curveLabel: '할인율에 따른 복비, 추천 범위 {min}~{max}%, 지금 {pct}%',
+      curveBand: '추천 범위 {min}~{max}%',
+      curveLegal: '법정 상한',
+      curvePin: '추천 {pct}%',
+      proofButton: '실거래 근거 보기',
+      /** 바닥 바 버튼 위 검은 꼬리표 (헤이딜러 "zero OPEN") — 위 금액이 화면 밖으로 나간 뒤에만 */
+      barTag: '적정 복비 {amount}',
+    },
+  },
 } as const;

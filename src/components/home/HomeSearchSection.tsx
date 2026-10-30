@@ -112,7 +112,7 @@ export default function HomeSearchSection({ complexes }: { complexes: SearchComp
         {/* 명패 검색창 (헤이딜러 번호판 입력처럼 굵은 테두리·큰 글씨, 대표님 2026-10-28 A안) */}
         <form
           onSubmit={handleSearchSubmit}
-          className={`w-full h-[60px] rounded-2xl bg-surface-card flex items-center px-4 gap-3 transition-all duration-200 border-2 samjeom:h-13 samjeom:rounded-xl samjeom:ring-0 ${
+          className={`lab-plate w-full h-[60px] rounded-2xl bg-surface-card flex items-center px-4 gap-3 transition-all duration-200 border-2 samjeom:h-13 samjeom:rounded-xl samjeom:ring-0 heydealer:h-16 heydealer:px-8 heydealer:ring-0 ${
             isFocused ? 'border-brand ring-4 ring-brand-glow' : 'border-text-primary samjeom:border-transparent samjeom:bg-surface-subtle'
           }`}
         >
@@ -127,7 +127,7 @@ export default function HomeSearchSection({ complexes }: { complexes: SearchComp
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={SITE_CONTENT.home.search.placeholder}
-            className="w-full h-full bg-transparent text-[17px] font-bold text-text-primary placeholder:text-text-disabled placeholder:font-medium focus:outline-none min-w-0"
+            className="w-full h-full bg-transparent text-[17px] heydealer:text-[20px] font-bold text-text-primary placeholder:text-text-disabled placeholder:font-medium focus:outline-none min-w-0"
             autoComplete="off"
             aria-label={SITE_CONTENT.home.search.placeholder}
           />

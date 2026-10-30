@@ -15,6 +15,7 @@ import type { HomeFacts } from '@/lib/home/homeStats';
 import { homeComplexExamples } from '@/lib/home/homeMarket';
 import LabThemeView from '@/components/lab/LabThemeView';
 import SamjeomHome from '@/components/lab/samjeom/SamjeomHome';
+import HeydealerHome from '@/components/lab/heydealer/HeydealerHome';
 
 /** 홈 숫자 카드 1단계 사실 숫자 (데이터 파일 기준 — 데이터를 다시 만들면 같이 바뀜) */
 const HOME_FACTS: HomeFacts = {
@@ -32,6 +33,7 @@ export default function HomePage() {
   return (
     <LabThemeView
       samjeom={<SamjeomHome complexes={complexes} examples={HOME_EXAMPLES} />}
+      heydealer={<HeydealerHome complexes={complexes} examples={HOME_EXAMPLES} facts={HOME_FACTS} />}
     >
     <div className="flex flex-col min-h-[100dvh] bg-surface-page">
       {/* ── GNB 헤더 ── */}

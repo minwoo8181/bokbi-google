@@ -134,6 +134,7 @@ const config: Config = {
     // 🧪 design-lab: 레퍼런스 테마일 때만 붙는 표기 (예: samjeom:pb-0). 색 토큰만으로 안 되는 모양 차이에 쓴다
     plugin(({ addVariant }) => {
       addVariant("samjeom", '[data-theme="samjeom"] &');
+      addVariant("heydealer", '[data-theme="heydealer"] &');
     }),
   ],
 };

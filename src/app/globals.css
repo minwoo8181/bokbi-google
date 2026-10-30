@@ -251,8 +251,9 @@
   display: none;
 }
 /* 실거래 그래프 축 날짜 11px·막대 위 거래 수 10px → 12px (스킬 점검: 글자 12px 이상, ui-ux-pro-max §6 · taste 앱 §6.3) */
+/* 막대 위 거래 수는 Recharts가 style="font-size:10px"를 직접 붙여 !important로 덮는다 (2026-10-30 헤이딜러 점검에서 발견) */
 [data-theme="samjeom"] [data-testid="trade-card"] svg :is(text, tspan) {
-  font-size: 12px;
+  font-size: 12px !important;
 }
 /* 매칭 요청 = 신고 흐름 (SamjeomFlowShell): 단계 본문은 화면 높이를 다 쓰고, 맨 끝 버튼 줄은 바닥에 붙는다 */
 [data-theme="samjeom"] .lab-flow [data-testid^="modal-step-"] {
@@ -286,6 +287,93 @@
 [data-theme="samjeom"] .lab-flat > * > div:first-child h2 {
   font-size: 20px;
 }
+
+/* 🚗 heydealer (레퍼런스: wwit.design 헤이딜러 2023 앱 화면, 캡처 픽셀 실측)
+   - 홈: 먹색 #101219 머리줄(글자 탭 + 메뉴) 위로 둥근 연회색 판이 올라온 모양, 큰 질문 한 줄 + 번호판(명패) 입력 하나
+   - 시세 화면: 위 번호판 배지 → 회색 이름표·값 제원 목록("수정" 파란 밑줄) → 큰 파랑 금액 + 내려가는 곡선 그래프(핀) → 바닥 바(왼쪽 글 + 오른쪽 파랑 버튼)
+   - 파랑은 캡처 #3B6DFF에서 흰 글씨 4.5:1을 넘게 한 단계 진하게 #3366F5 */
+[data-theme="heydealer"] {
+  --brand-primary: #3366F5;
+  --brand-primary-hover: #2A55D9;
+  --brand-primary-active: #2246B8;
+  --brand-primary-light: #EBF0FF;
+  --brand-primary-subtle: #F5F8FF;
+  --brand-glow: rgba(51, 102, 245, 0.16);
+
+  --text-primary: #262F40;
+  --text-secondary: #4D566A;
+  /* 제원 이름표 회색 (흰 바탕 4.8:1, 연회색 판 4.5:1) */
+  --text-tertiary: #69728A;
+  --text-disabled: #B4BAC6;
+  --text-inverse: #FFFFFF;
+
+  --bg-page: #F7F8FB;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F2F4F8;
+  --bg-highlight: #EBF0FF;
+
+  --border-light: #EEF0F4;
+  --border-default: #E1E4EA;
+  --border-focused: #3366F5;
+
+  /* 머리줄 먹색 · 말풍선 */
+  --lab-ink: #101219;
+
+  /* 헤이딜러 카드는 각이 살짝 있다 (번호판·견적 카드 8~12px) */
+  --r-xl: 10px;
+  --r-2xl: 12px;
+  --r-3xl: 20px;
+}
+[data-theme="heydealer"] :is(a, button, [role="radio"]):focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+[data-theme="heydealer"] :is(a, button, [role="radio"]) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition-property: opacity, transform, background-color, border-color, color;
+  transition-duration: 120ms;
+}
+[data-theme="heydealer"] :is(a, button, [role="radio"]):active {
+  opacity: 0.72;
+}
+/* 근거 구획(.lab-hd-flat): 원래 카드 상자 → 회색 틈으로 나눈 납작한 흰 구획 (헤이딜러 제원·이력 목록) */
+[data-theme="heydealer"] .lab-hd-flat > * {
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 32px 20px;
+}
+[data-theme="heydealer"] .lab-hd-flat > * > h2:first-child,
+[data-theme="heydealer"] .lab-hd-flat > * > div:first-child h2 {
+  font-size: 20px;
+}
+[data-theme="heydealer"] .lab-hd-flat button[aria-label$="투표 주제"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+[data-theme="heydealer"] [data-testid="trade-card"] svg :is(text, tspan) {
+  font-size: 12px !important;
+}
+/* 명패 검색창 = 번호판: 각진 모서리 + 양옆 나사 두 개 (헤이딜러 "12가 3425" 입력) */
+[data-theme="heydealer"] .lab-plate {
+  position: relative;
+  border-radius: 8px;
+}
+[data-theme="heydealer"] .lab-plate::before,
+[data-theme="heydealer"] .lab-plate::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 9999px;
+  background: var(--border-default);
+  box-shadow: inset 0 0 0 2px var(--text-disabled);
+}
+[data-theme="heydealer"] .lab-plate::before { left: 10px; }
+[data-theme="heydealer"] .lab-plate::after { right: 10px; }
 
 html, body {
   word-break: keep-all;

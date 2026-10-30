@@ -8,7 +8,7 @@
  * 레퍼런스 테마는 화면 구성까지 바꾼다 (components/lab/<테마>/, LabThemeView·useLabTheme로 고름)
  */
 
-export type ThemePreset = 'toss' | 'samjeom';
+export type ThemePreset = 'toss' | 'samjeom' | 'heydealer';
 
 export interface ThemeDefinition {
   id: ThemePreset;
@@ -32,6 +32,13 @@ export const THEME_PRESETS: Record<ThemePreset, ThemeDefinition> = {
     description: '파랑 (#2377F7) + 구획 제목·흰 카드 홈, 연파랑 머리 띠 리포트형 분석 (화면 구성까지 바뀜)',
     primaryColor: '#2377F7',
     lightColor: '#E9F2FF',
+  },
+  heydealer: {
+    id: 'heydealer',
+    name: '헤이딜러 레퍼런스',
+    description: '파랑 (#3366F5) + 먹색 머리줄·탭, 명패 검색, 제원 목록·시세 곡선형 분석 (화면 구성까지 바뀜)',
+    primaryColor: '#3366F5',
+    lightColor: '#EBF0FF',
   },
 };
 

@@ -15,6 +15,14 @@
 | 분석 | 완료 | K1 머리 띠(조건 칩 → "내 집 조건" 시트) → K2 → 추천 할인 계산 → 실거래 → 투표, 바닥 바 주 버튼 하나(금액은 머리 띠가 안 보일 때만) |
 | 매칭 요청 창 | 완료 (`99e7e10`) | 전체 화면 신고 흐름 `SamjeomFlowShell`, 진행 막대, 질문 26px, 이전·다음 바닥 고정 |
 
+## 헤이딜러 레퍼런스 (2026-10-30, 대표님 "홈·분석 먼저")
+- 테마 `heydealer` (파랑 #3366F5 = 캡처 #3B6DFF를 흰 글씨 4.5:1로 한 단계 진하게, 먹색 #101219). 부품 `src/components/lab/heydealer/`, 문구 `LAB_CONTENT.heydealer`
+- 홈: 먹색 머리줄(글자 탭 "집 내놓을 때 | 중개사라면" + 메뉴 판) → 둥근 판 위 큰 질문 + 번호판 명패 검색 → 전광판(사실 숫자) → 단지별 복비 예시(펼침 견적 카드) → 진행 순서(점선 타임라인). 탭 바 없음
+- 분석: 번호판 배지(단지 이름) → 제원 목록(거래·평형·층 옆 파란 "수정" → 내 집 조건 시트, 처음 한 번 검은 말풍선) → 적정 복비 40px + 할인율 곡선(핀, commissionFromDiscount 그대로) → 근거 구획 → 바닥 바(안심 글 + 버튼, 금액이 화면 밖이면 버튼 위 검은 꼬리표)
+- 매칭 요청 창 이후 화면은 아직 원래 화면 (헤이딜러는 다음 단계에서)
+- e2e: `npx playwright test --config playwright.heydealer.config.ts`
+- 내 집 조건 시트는 두 테마 공용 `src/components/lab/LabConditionSheet.tsx`
+
 ## 남은 순서 (한 단계씩 끝내고 대표님 확인)
 2. **내 의뢰 + 거래 페이지** (집주인 쪽) ← 다음. 공통 부품(머리줄·카드·시트·버튼)도 여기서 같이 정리
 3. 중개사 화면 (새 의뢰 · 내 매물 · 내 사무소 · 복비 특약)
@@ -22,7 +30,7 @@
 5. 관리자
 
 ## 매 단계 검증 (빠뜨리지 않기)
-- `npm run typecheck` · `npx vitest run` · `npx playwright test` · **`npx playwright test --config playwright.samjeom.config.ts`** (같은 e2e를 삼쩜삼 테마로)
+- `npm run typecheck` · `npx vitest run` · `npx playwright test` · **`npx playwright test --config playwright.samjeom.config.ts`** · **`--config playwright.heydealer.config.ts`** (같은 e2e를 테마별로)
 - 360·390px 가로 넘침, 터치 44px, 12px 미만 글자 0, 같은 숫자 한 화면 한 번
 - 디자인 스킬 기준으로 점검: taste-skill `references/app-screens.md`, ui-ux-pro-max `references/pro-rules.md`, web-design-guidelines(최신본 WebFetch), impeccable `reference/critique.md`(수동 호출 전용이라 문서로)
 - 커밋 메시지는 PowerShell에서 따옴표가 깨지니 임시 파일 + `git commit -F`
