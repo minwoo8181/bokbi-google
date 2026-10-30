@@ -1,0 +1,10 @@
+{
+  "name": "복비 관리자",
+  "short_name": "복비 관리자",
+  "start_url": "/admin",
+  "scope": "/admin",
+  "display": "standalone",
+  "background_color": "#F2F4F6",
+  "theme_color": "#F2F4F6",
+  "icons": [{ "src": "/icon.svg", "sizes": "any", "type": "image/svg+xml" }]
+}

@@ -1,0 +1,295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   🎨 복비(Bokbi) V2 디자인 토큰 시스템 (One-Click Theme Switcher)
+   
+   [딸깍 테마 변경 안내]
+   나중에 브랜드 컬러나 폰트를 바꾸고 싶으실 경우:
+   1. 아래 :root의 색상 코드(--brand-primary 등)를 원하는 색으로 변경하거나,
+   2. <html data-theme="navy"> 와 같이 data-theme 속성 하나만 바꾸시면
+      전체 애플리케이션의 색상, 폰트, 라운딩이 일괄 자동 변경됩니다.
+   ========================================================================== */
+
+:root,
+[data-theme="toss"] {
+  /* 🏷️ 브랜드 메인 컬러 (기본: 토스 블루 시스템) */
+  --brand-primary: #0064FF;
+  --brand-primary-hover: #0050D9;
+  --brand-primary-active: #003EA8;
+  --brand-primary-light: #EBF3FF;
+  --brand-primary-subtle: #F4F8FF;
+  --brand-glow: rgba(0, 100, 255, 0.16);
+
+  /* 🖋️ 텍스트 타이포그래피 */
+  --text-primary: #191F28;
+  --text-secondary: #4E5968;
+  /* 흰 바탕 5.2:1 · 연회색 칸(#F2F4F6) 4.7:1 (2026-10-29: #8B95A1 3.0 → #6B7684는 회색 칸 위 4.2라 한 단계 더, 대표님 "전체 통일") */
+  --text-tertiary: #636E7B;
+  --text-disabled: #B0B8C1;
+  --text-inverse: #FFFFFF;
+
+  /* 🏢 배경 & 서피스 */
+  --bg-page: #F2F4F6;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F9FAFB;
+  --bg-highlight: #F4F6F8;
+
+  /* 🔲 테두리 및 구분선 */
+  --border-light: #F2F4F6;
+  --border-default: #E5E8EB;
+  --border-focused: #0064FF;
+
+  /* 🚦 상태 색 (복비 슬라이더 4색 구간: 파랑=brand, 초록·노랑·빨강). 브랜드 테마와 무관하게 의미가 고정된다 */
+  --status-good: #0A9B62;
+  --status-good-light: #E7F6EF;
+  /* 연초록 바탕 위 작은 글씨용 진한 초록 (good은 3.2:1이라 본문 4.5:1 미달, 2026-10-29 홈 디테일) */
+  --status-good-strong: #067A4C;
+  --status-caution: #E5A100;
+  --status-caution-light: #FFF6DE;
+  /* 연노랑 바탕 위 작은 글씨용 진한 노랑 (5.5:1, 분석 "대장" 배지) */
+  --status-caution-strong: #8A5A00;
+  --status-risk: #E5484D;
+  --status-risk-light: #FDECEC;
+  /* 빨강 글씨용 (흰 바탕 5.3:1). risk(#E5484D)는 3.9라 작은 글씨에 미달 — 바탕·테두리는 risk 그대로 */
+  --status-risk-strong: #C8323A;
+
+  /* 🔘 라운딩 토큰 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+
+  /* 🔤 폰트 시스템 */
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  --letter-spacing: -0.02em;
+
+  /* 🔄 레거시 호환용 토스 변수 매핑 */
+  --toss-blue: var(--brand-primary);
+  --toss-blue-hover: var(--brand-primary-hover);
+  --toss-blue-light: var(--brand-primary-light);
+  --toss-primary: var(--text-primary);
+  --toss-secondary: var(--text-secondary);
+  --toss-tertiary: var(--text-tertiary);
+  --toss-border: var(--border-default);
+  --toss-subtle: var(--bg-page);
+  --toss-white: var(--bg-surface);
+}
+
+/* 🔴 테마 프리셋: 뤼튼 (Wrtn Inspire Red - 무채색 캔버스 위 Inspire Red 한 점) */
+[data-theme="wrtn"] {
+  /* 🏷️ 브랜드 메인 컬러 (Inspire Red) */
+  --brand-primary: #F54211;
+  --brand-primary-hover: #D33717;
+  --brand-primary-active: #A82A11;
+  --brand-primary-light: #FFF5EC;
+  --brand-primary-subtle: #FFF9F5;
+  --brand-glow: rgba(245, 66, 17, 0.16);
+
+  /* 🖋️ 텍스트 타이포그래피 (Wrtn 특유의 먹색 텍스트, 절대 순검정 #000 아님) */
+  --text-primary: #090909;
+  --text-secondary: #545454;
+  --text-tertiary: #888888;
+  --text-disabled: #C9C9C9;
+  --text-inverse: #FFFFFF;
+
+  /* 🏢 배경 & 서피스 (Wrtn 모던 미니멀 무채색 캔버스) */
+  --bg-page: #F8F8F8;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F2F2F2;
+  --bg-highlight: #FFF5EC;
+
+  /* 🔲 테두리 및 구분선 (Wrtn 1px 섬세한 라인) */
+  --border-light: #F2F2F2;
+  --border-default: #E9E9E9;
+  --border-focused: #F54211;
+
+  /* 🔘 라운딩 토큰 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+
+  /* 🔄 레거시 호환 매핑 */
+  --toss-blue: var(--brand-primary);
+  --toss-blue-hover: var(--brand-primary-hover);
+  --toss-blue-light: var(--brand-primary-light);
+  --toss-primary: var(--text-primary);
+  --toss-secondary: var(--text-secondary);
+  --toss-tertiary: var(--text-tertiary);
+  --toss-border: var(--border-default);
+  --toss-subtle: var(--bg-page);
+  --toss-white: var(--bg-surface);
+}
+
+/* 🔵 테마 프리셋 2: 모던 딥 네이비 (초신뢰 프리미엄 핀테크) */
+[data-theme="navy"] {
+  --brand-primary: #1E3A8A;
+  --brand-primary-hover: #172554;
+  --brand-primary-active: #0F172A;
+  --brand-primary-light: #EFF6FF;
+  --brand-primary-subtle: #F8FAFC;
+  --brand-glow: rgba(30, 58, 138, 0.16);
+  --border-focused: #1E3A8A;
+}
+
+/* 🟢 테마 프리셋 3: 에메랄드 그린 (부동산 안정 & 신뢰감 테마) */
+[data-theme="emerald"] {
+  --brand-primary: #059669;
+  --brand-primary-hover: #047857;
+  --brand-primary-active: #065F46;
+  --brand-primary-light: #ECFDF5;
+  --brand-primary-subtle: #F0FDF4;
+  --brand-glow: rgba(5, 150, 105, 0.16);
+  --border-focused: #059669;
+}
+
+/* 🟣 테마 프리셋 4: 인디고 바이올렛 (모던 테크 스타트업 테마) */
+[data-theme="indigo"] {
+  --brand-primary: #4F46E5;
+  --brand-primary-hover: #4338CA;
+  --brand-primary-active: #3730A3;
+  --brand-primary-light: #EEF2FF;
+  --brand-primary-subtle: #F5F7FF;
+  --brand-glow: rgba(79, 70, 229, 0.16);
+  --border-focused: #4F46E5;
+}
+
+/* 연한 선 토큰 (모든 테마 공통, 브랜드색에서 계산). Tailwind는 var() 색에 /30 같은 투명도를 못 붙여 조용히 무시되므로
+   반투명 대신 이 토큰을 쓴다 (2026-10-27, src/__tests__/colorTokens.test.ts가 /숫자 표기를 막음)
+   - brand-line: 펼친 칸·선택 카드의 연한 테두리 / brand-line-strong: 손가락 올렸을 때·강조 테두리 / status-caution-line: 주의 박스 테두리 */
+:root,
+[data-theme] {
+  --brand-line: color-mix(in srgb, var(--brand-primary) 25%, var(--bg-surface));
+  --brand-line-strong: color-mix(in srgb, var(--brand-primary) 45%, var(--bg-surface));
+  /* 그래프 연한 칸 (홈 숫자 카드 막대, 2026-10-29): 흰 바탕 대비 2:1을 넘는 가장 연한 단계 — light·line·line-strong은 대비 미달 */
+  --brand-mid: color-mix(in srgb, var(--brand-primary) 50%, var(--bg-surface));
+  --status-caution-line: color-mix(in srgb, var(--status-caution) 30%, var(--status-caution-light));
+  /* 이득·안심 박스 테두리 (아껴요 배지·"이 금액으로 계약" 약속, 2026-10-27) */
+  --status-good-line: color-mix(in srgb, var(--status-good) 25%, var(--status-good-light));
+}
+
+/* ==========================================================================
+   🧪 디자인 실험실 테마 (design-lab 복사본 전용, 2026-10-30)
+   - 위 공통 블록(:root,[data-theme])보다 뒤에 둬야 brand-line 등을 덮어쓸 수 있다
+   - 모서리는 --r-* (tailwind.config의 rounded-sm~3xl이 이 값을 읽음, 없으면 Tailwind 기본값)
+   ========================================================================== */
+
+/* 🧾 samjeom (레퍼런스: wwit.design 삼쩜삼 2024 앱 화면, 캡처 픽셀 실측)
+   - 회색 바탕 #F4F6F8 위 "카드 밖 구획 제목 → 흰 카드" 묶음, 카드 안 폭 꽉 찬 파랑 버튼
+   - 리포트 화면: 연파랑 머리 띠 #E9F2FF + 두 줄 큰 문장(핵심 숫자만 파랑) + 막대 비교 그래프 + 이전·다음 두 버튼
+   - 파랑 #2377F7 한 가지, 비교 막대만 노랑 (--lab-compare) */
+[data-theme="samjeom"] {
+  --brand-primary: #2377F7;
+  /* 연파랑 위 작은 글씨용으로도 쓰여 한 단계 진하게 (#E9F2FF 위 4.9:1) */
+  --brand-primary-hover: #1A62D6;
+  --brand-primary-active: #1550B0;
+  --brand-primary-light: #E9F2FF;
+  --brand-primary-subtle: #F4F8FF;
+  --brand-glow: rgba(35, 119, 247, 0.16);
+
+  --text-primary: #191F28;
+  --text-secondary: #4E5968;
+  --text-tertiary: #636E7B;
+  --text-disabled: #B0B8C1;
+  --text-inverse: #FFFFFF;
+
+  --bg-page: #F4F6F8;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F4F6F8;
+  --bg-highlight: #E9F2FF;
+
+  --border-light: #F2F4F6;
+  --border-default: #E5E8EB;
+  --border-focused: #2377F7;
+
+  /* 리포트 "평균 vs 이 단지" 막대의 비교 쪽 (삼쩜삼 "또래 평균" 노랑) */
+  --lab-compare: #FFB020;
+}
+
+/* 리포트 구획 줄(.lab-flat)의 바로 아래 칸: 원래 카드 상자 → 회색 띠로 나눈 납작한 흰 구획 */
+[data-theme="samjeom"] .lab-flat > * {
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  /* 리포트 구획과 같은 여백 (좌우 20 · 위아래 32) */
+  padding: 32px 20px;
+}
+/* 원래 카드 제목(17px)을 리포트 구획 제목 크기로 */
+[data-theme="samjeom"] .lab-flat > * > h2:first-child,
+[data-theme="samjeom"] .lab-flat > * > div:first-child h2 {
+  font-size: 20px;
+}
+
+html, body {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  /* 마지막 줄에 어절 하나만 떨어지는 줄내림 방지 (대표님 지적 2026-10-24, 미지원 브라우저는 기존 그대로) */
+  text-wrap: pretty;
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: var(--letter-spacing);
+  /* hidden은 스크롤 상자를 만들어 sticky 머리줄이 안 붙는다 → clip (가로 넘침은 똑같이 막음, 2026-10-28) */
+  overflow-x: clip;
+}
+
+/* 390px 모바일 중심 컨테이너 (토스 앱 뷰포트 느낌) */
+.mobile-app-frame {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background-color: var(--bg-surface);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  overflow-x: clip;
+}
+
+/* 관리자 콘솔만 넓은 화면에서 틀을 풀어 대시보드로 (대표님 2026-10-29 PC 버전). 휴대폰 폭에서는 그대로 */
+@media (min-width: 1024px) {
+  .mobile-app-frame:has(.admin-wide) {
+    max-width: none;
+  }
+}
+
+/* 주요 단독 액션 버튼 터치 규격 */
+.touch-target-cta {
+  min-height: 48px;
+}
+
+/* 텍스트 래핑 제어 */
+.no-wrap {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* 스크롤바 숨김 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* 모션 줄이기: 휴대폰 "동작 줄이기"를 켠 사람에게는 바로 보이게 (DESIGN.md §6). Framer Motion(분석 화면)은 따로 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

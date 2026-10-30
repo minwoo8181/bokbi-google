@@ -1,0 +1,426 @@
+{
+  "region": "경기>동부1권",
+  "period": "202510 ~ 202610",
+  "series": {
+    "saleSupplyDemand": {
+      "label": "매매수급동향지수",
+      "statblId": "A_2024_00076",
+      "points": [
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권",
+          "value": 103.65,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권",
+          "value": 103.92,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권",
+          "value": 103.06,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권",
+          "value": 104.77,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권",
+          "value": 103.96,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권",
+          "value": 104.55,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권",
+          "value": 105.09,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권",
+          "value": 107.52,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202606",
+          "region": "경기>동부1권",
+          "value": 109.73,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202607",
+          "region": "경기>동부1권",
+          "value": 112.43,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202608",
+          "region": "경기>동부1권",
+          "value": 112.25,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202609",
+          "region": "경기>동부1권",
+          "value": 113.69,
+          "item": "지수"
+        }
+      ]
+    },
+    "jeonseSupplyDemand": {
+      "label": "전세수급동향지수",
+      "statblId": "A_2024_00077",
+      "points": [
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권",
+          "value": 104.46,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권",
+          "value": 107.12,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권",
+          "value": 105.41,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권",
+          "value": 102.66,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권",
+          "value": 103.96,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권",
+          "value": 106.76,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권",
+          "value": 106.89,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권",
+          "value": 108.2,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202606",
+          "region": "경기>동부1권",
+          "value": 111.08,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202607",
+          "region": "경기>동부1권",
+          "value": 113.15,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202608",
+          "region": "경기>동부1권",
+          "value": 113.15,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202609",
+          "region": "경기>동부1권",
+          "value": 112.97,
+          "item": "지수"
+        }
+      ]
+    },
+    "salePriceIndex": {
+      "label": "매매가격지수_아파트",
+      "statblId": "A_2024_00045",
+      "points": [
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권",
+          "value": 94.98,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권>남양주시",
+          "value": 96.34,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권>구리시",
+          "value": 90.84,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권>하남시",
+          "value": 90.37,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202510",
+          "region": "경기>동부1권>광주시",
+          "value": 99.68,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권",
+          "value": 95.6,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권>남양주시",
+          "value": 96.68,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권>구리시",
+          "value": 92.2,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권>하남시",
+          "value": 91.43,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202511",
+          "region": "경기>동부1권>광주시",
+          "value": 99.99,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권",
+          "value": 96.17,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권>남양주시",
+          "value": 97.02,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권>구리시",
+          "value": 92.78,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권>하남시",
+          "value": 92.82,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202512",
+          "region": "경기>동부1권>광주시",
+          "value": 100.22,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권",
+          "value": 96.77,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권>남양주시",
+          "value": 97.36,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권>구리시",
+          "value": 93.53,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202601",
+          "region": "경기>동부1권>하남시",
+          "value": 93.98,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권",
+          "value": 97.5,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권>남양주시",
+          "value": 97.84,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권>구리시",
+          "value": 95.16,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202602",
+          "region": "경기>동부1권>하남시",
+          "value": 95.17,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권",
+          "value": 98.05,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권>남양주시",
+          "value": 98.32,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권>구리시",
+          "value": 96.22,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202603",
+          "region": "경기>동부1권>하남시",
+          "value": 96.39,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권",
+          "value": 98.52,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권>남양주시",
+          "value": 98.85,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권>구리시",
+          "value": 97.38,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202604",
+          "region": "경기>동부1권>하남시",
+          "value": 97.33,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권",
+          "value": 99.17,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권>남양주시",
+          "value": 99.38,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권>구리시",
+          "value": 98.62,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202605",
+          "region": "경기>동부1권>하남시",
+          "value": 98.71,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202606",
+          "region": "경기>동부1권",
+          "value": 100.0,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202606",
+          "region": "경기>동부1권>남양주시",
+          "value": 100.0,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202607",
+          "region": "경기>동부1권",
+          "value": 101.13,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202607",
+          "region": "경기>동부1권>남양주시",
+          "value": 101.0,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202608",
+          "region": "경기>동부1권",
+          "value": 102.13,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202608",
+          "region": "경기>동부1권>남양주시",
+          "value": 101.85,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202609",
+          "region": "경기>동부1권",
+          "value": 103.22,
+          "item": "지수"
+        },
+        {
+          "yearMonth": "202609",
+          "region": "경기>동부1권>남양주시",
+          "value": 102.84,
+          "item": "지수"
+        }
+      ]
+    }
+  }
+}

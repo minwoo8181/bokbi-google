@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "bokbi-lab",
+      "runtimeExecutable": "cmd",
+      "runtimeArgs": ["/c", "node node_modules/next/dist/bin/next dev -p 3006"],
+      "port": 3006
+    }
+  ]
+}

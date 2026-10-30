@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(git init -b design-lab; git remote add origin https://github.com/realminuu-web/bokbi-.git; git remote set-url --push origin DISABLED; git branch --show-current; git symbolic-ref HEAD; git remote -v; git push origin design-lab; \"push exit code: $LASTEXITCODE\")"
+    ]
+  }
+}

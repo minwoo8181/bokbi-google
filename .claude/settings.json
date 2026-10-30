@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run typecheck)",
+      "Bash(npm test)",
+      "Bash(git status)",
+      "Bash(git commit *)"
+    ],
+    "deny": [
+      "Bash(rm -rf *)",
+      "Read(./.env)",
+      "Read(./.env.*)",
+      "Read(./secrets/**)",
+      "Write(./.env*)"
+    ],
+    "ask": [
+      "Bash(npm install *)",
+      "Bash(git push *)",
+      "PowerShell(git push *)"
+    ]
+  }
+}

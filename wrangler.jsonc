@@ -1,0 +1,30 @@
+/**
+ * Cloudflare Workers 배포 설정 (OpenNext). 저장소에 두어 Cloudflare가 배포 때마다 자동 생성하지 않게 한다.
+ * Worker 이름과 자기 참조(WORKER_SELF_REFERENCE)는 반드시 대시보드의 Worker 이름과 같아야 한다.
+ * 지금 연결된 Worker는 "bokbi-mvp" (2026-10-25 배포 로그 확인: 자기 참조가 없는 Worker "bokbi"를 가리켜 실패).
+ * 둘 중 하나만 바꾸면 code 10143 등으로 다시 실패한다 (2026-10-23 사례).
+ * 비밀값(GEMINI_API_KEY, V_WORLD_MAP_API_KEY 등)은 여기에 쓰지 않고 Cloudflare 대시보드 Secret으로 등록한다.
+ */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "bokbi-mvp",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-10-19",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "bokbi-mvp"
+    }
+  ],
+  "images": {
+    "binding": "IMAGES"
+  },
+  "observability": {
+    "enabled": true
+  }
+}
