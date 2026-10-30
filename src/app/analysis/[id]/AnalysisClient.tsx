@@ -248,7 +248,7 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
           onBack={() => router.push('/')}
           onShare={handleShare}
           onOpenModal={() => setIsModalOpen(true)}
-          sections={<>{chartCard}{reasonCard}{debatePoll}</>}
+          sections={{ chart: chartCard, reason: reasonCard, poll: debatePoll }}
         />
       ) : (
       <>

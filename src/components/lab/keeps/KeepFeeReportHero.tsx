@@ -42,10 +42,11 @@ export default function KeepFeeReportHero({
         ) : (
           <div className="mt-2">{contextLine}</div>
         )}
+        {/* 2026-10-30 스킬 점검: 답이 되는 금액이 화면에서 가장 커야 함 (taste 앱 §5, 26px → 40px, K2 제목 26px의 1.5배) */}
         <h1 className="mt-2 text-[26px] font-bold text-text-primary leading-[1.35]">
           {t.heroLead}
           <br />
-          <span className="text-brand tabular-nums">{formatWon(totalWon)}</span>
+          <span className="text-[40px] leading-[1.2] text-brand tabular-nums">{formatWon(totalWon)}</span>
           {t.heroTail}
         </h1>
         {ref && (

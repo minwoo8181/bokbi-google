@@ -80,10 +80,11 @@ export function SamjeomSavingsCard({ examples, onCta }: { examples: HomeComplexE
       </div>
 
       <div className="px-5">
-        <p className="mt-6 text-[20px] font-bold text-text-primary leading-snug" aria-live="polite">
+        {/* 스킬 점검: 홈 글자가 모두 20px이라 위계가 없었다 → 차이 금액 하나만 26px (taste Type "큰 것 하나") */}
+        <p className="mt-6 text-[17px] font-bold text-text-primary leading-snug" aria-live="polite">
           {t.savingsLead.replace('{label}', ex.label).replace('{josa}', topicJosa(ex.label))}
           <br />
-          <span className="text-brand tabular-nums">{man(ex.cutWon)}</span>
+          <span className="text-[26px] text-brand tabular-nums">{man(ex.cutWon)}</span>
           {t.savingsTail}
         </p>
 
@@ -106,7 +107,8 @@ export function SamjeomSavingsCard({ examples, onCta }: { examples: HomeComplexE
                     className="absolute inset-x-0 top-0 rounded-t-lg border-2 border-dashed border-brand-line-strong flex items-center justify-center"
                     style={{ height: CAP_BAR - lowBar }}
                   >
-                    <span className="text-[12px] font-bold text-brand-hover tabular-nums">−{man(ex.cutWon)}</span>
+                    {/* 금액은 위 문장에 한 번만 (스킬 점검: 같은 숫자 두 번) */}
+                    <span className="text-[12px] font-bold text-brand-hover">{t.cutLabel}</span>
                   </div>
                 )}
                 <div className={`absolute inset-x-0 bottom-0 rounded-lg ${b.bar}`} style={{ height: b.h }} />
@@ -131,7 +133,8 @@ export function SamjeomSavingsCard({ examples, onCta }: { examples: HomeComplexE
 
 /**
  * "복비, 왜 다를까요?" 삼쩜삼판 ("돈이 되는 이야기" 목록 카드 방식):
- * 카드 밖 제목 → 카드 안 라벨 → 번호 타일 + 제목·칩 + 한 줄 설명 3줄 → 폭 꽉 찬 파랑 버튼(이용 방법 시트)
+ * 카드 밖 제목 → 카드 안 라벨 → 제목·칩 + 한 줄 설명 3줄(줄 사이 선) → 연파랑 버튼(이용 방법 시트).
+ * 스킬 점검: 세 줄은 순서가 아니라 이유라 번호를 뺐고, 색 칠한 네모 타일도 뺐다 (frontend-design 번호 규칙, taste 아이콘 타일)
  */
 export function SamjeomProcessCard({ onMore }: { onMore: () => void }) {
   const { process } = SITE_CONTENT.home;
@@ -140,22 +143,17 @@ export function SamjeomProcessCard({ onMore }: { onMore: () => void }) {
       <SectionTitle>{process.sectionTitle}</SectionTitle>
       <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-5" data-testid="home-process">
         <CardLabel onClick={onMore}>{t.processLabel}</CardLabel>
-        <ol className="flex flex-col">
-          {process.steps.map((step, k) => (
-            <li key={step.title} className="py-3 flex gap-3">
-              <span className="w-10 h-10 flex-shrink-0 rounded-xl bg-brand-light text-brand flex items-center justify-center text-[15px] font-bold" aria-hidden>
-                {k + 1}
+        <ul className="divide-y divide-border-light">
+          {process.steps.map((step) => (
+            <li key={step.title} className="py-4">
+              <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span className="text-[15px] font-bold text-text-primary">{step.title}</span>
+                <span className="rounded-md bg-surface-subtle px-2 py-1 text-[12px] font-medium text-text-secondary">{step.chip}</span>
               </span>
-              <span className="min-w-0 flex-1">
-                <span className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span className="text-[15px] font-bold text-text-primary">{step.title}</span>
-                  <span className="rounded-md bg-surface-subtle px-2 py-1 text-[12px] font-medium text-text-secondary">{step.chip}</span>
-                </span>
-                <span className="mt-1 block text-[13px] text-text-tertiary leading-normal">{step.desc}</span>
-              </span>
+              <span className="mt-1 block text-[13px] text-text-secondary leading-normal">{step.desc}</span>
             </li>
           ))}
-        </ol>
+        </ul>
         <button
           type="button"
           onClick={onMore}

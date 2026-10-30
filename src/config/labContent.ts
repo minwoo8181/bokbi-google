@@ -46,6 +46,7 @@ export const LAB_CONTENT = {
       savingsTail: ' 낮아져요',
       barCap: '법정 상한 평균',
       barLow: '{pct}% 낮게 정하면',
+      cutLabel: '낮아지는 만큼',
       savingsCta: '우리 단지 복비 보기',
       processLabel: '복비 진행 방식',
       partnerTitle: '다산동 공인중개사인가요?',

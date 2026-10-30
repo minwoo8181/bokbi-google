@@ -220,6 +220,36 @@
   /* 리포트 구획과 같은 여백 (좌우 20 · 위아래 32) */
   padding: 32px 20px;
 }
+/* 포커스·눌림 (2026-10-30 스킬 점검: 버튼 19개에 포커스 표시 0개 — web-design-guidelines Focus, ui-ux-pro-max pro-rules Interaction) */
+[data-theme="samjeom"] :is(a, button, [role="radio"]):focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+[data-theme="samjeom"] :is(a, button, [role="radio"]) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition-property: opacity, transform, background-color, border-color, color;
+  transition-duration: 120ms;
+}
+[data-theme="samjeom"] :is(a, button, [role="radio"]):active {
+  opacity: 0.72;
+}
+/* 투표 이전·다음 화살표: 보이는 크기 그대로, 누르는 영역만 44px (스킬 점검: 24px) */
+[data-theme="samjeom"] .lab-flat button[aria-label$="투표 주제"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+/* 추천 이유 카드: 제목·숫자 칸 3개는 킵 K2와 같은 사실이라 숨기고 "추천 할인 계산" 구획으로만 (스킬 점검: 같은 사실 2~3번) */
+[data-theme="samjeom"] .lab-reason [data-testid="reason-card"] {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+[data-theme="samjeom"] .lab-reason [data-testid="reason-card"] > div:first-child,
+[data-theme="samjeom"] .lab-reason [data-testid="reason-summary"] > .grid {
+  display: none;
+}
 /* 원래 카드 제목(17px)을 리포트 구획 제목 크기로 */
 [data-theme="samjeom"] .lab-flat > * > h2:first-child,
 [data-theme="samjeom"] .lab-flat > * > div:first-child h2 {

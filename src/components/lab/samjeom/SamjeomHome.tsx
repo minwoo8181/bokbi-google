@@ -35,7 +35,7 @@ export default function SamjeomHome({ complexes, examples }: { complexes: Search
   return (
     <div className="min-h-[100dvh] bg-surface-page pb-20">
       <header className="h-14 px-5 flex items-center bg-surface-page sticky top-0 z-30">
-        <Link href="/" className="flex items-center gap-2" aria-label={SITE_CONTENT.common.brandName}>
+        <Link href="/" className="h-11 flex items-center gap-2" aria-label={SITE_CONTENT.common.brandName}>
           <BrandLogo size={28} />
           <span className="text-[20px] font-extrabold text-text-primary">{SITE_CONTENT.common.brandName}</span>
         </Link>

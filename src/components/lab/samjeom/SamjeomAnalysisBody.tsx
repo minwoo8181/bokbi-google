@@ -38,14 +38,15 @@ interface SamjeomAnalysisBodyProps {
   onBack: () => void;
   onShare: () => void;
   onOpenModal: () => void;
-  /** 실거래 그래프·추천 이유·투표 (원래 카드 그대로, 회색 띠로 나눈 납작한 구획) */
-  sections: React.ReactNode;
+  /** 원래 카드들: 실거래 그래프 · 추천 이유(계산·AI 설명) · 투표 */
+  sections: { chart: React.ReactNode; reason: React.ReactNode; poll: React.ReactNode };
 }
 
 /**
  * design-lab 삼쩜삼 분석 = 리포트 구성 (레퍼런스: 삼쩜삼 2024 종합소득세 리포트), 2026-10-30 CTA 재배치.
  * 이용자 순서 = ① 금액 ② 내 평형·층 맞나 ③ 왜 ④ 요청:
- * 킵 K1 머리 띠(조건 칩을 금액 바로 위에 → 누르면 "내 집 조건" 시트) → 킵 K2 왜 → 실거래 → AI 설명 → 투표.
+ * 킵 K1 머리 띠(조건 칩을 금액 바로 위에 → 누르면 "내 집 조건" 시트) → 킵 K2 왜 → 추천 할인 계산(AI 설명 펼치기) → 실거래 → 투표.
+ * 추천 이유 카드의 제목·숫자 칸은 K2와 같은 사실이라 globals.css에서 숨긴다 (2026-10-30 스킬 점검).
  * 바닥 바는 주 버튼 하나(안심 한 줄 + 금액 + 매칭 요청). 계산은 AnalysisClient 그대로, 이 파일은 배치만
  */
 export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
@@ -67,12 +68,11 @@ export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
             <button type="button" onClick={p.onBack} aria-label="뒤로가기" className="w-11 h-11 flex items-center justify-center text-text-primary">
               <ArrowLeft className="w-6 h-6" />
             </button>
-            <button
-              type="button"
-              onClick={p.onShare}
-              className="h-8 px-3 mr-2 rounded-lg border border-border-default bg-surface-card text-[12px] font-medium text-text-secondary"
-            >
-              {t.share}
+            {/* 보이는 알약은 32px, 누르는 영역은 44px */}
+            <button type="button" onClick={p.onShare} className="h-11 px-2 flex items-center">
+              <span className="h-8 px-3 rounded-lg border border-border-default bg-surface-card text-[12px] font-medium text-text-secondary flex items-center">
+                {t.share}
+              </span>
             </button>
           </div>
         }
@@ -109,8 +109,17 @@ export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
         </div>
       )}
 
-      {/* 근거 카드들: 실거래 → AI 설명 → 투표 (회색 띠로 나눈 납작한 흰 구획) */}
-      <div className="lab-flat mt-2 flex flex-col gap-2">{p.sections}</div>
+      {/* 추천 할인 계산: K2(왜) 바로 다음 — 범위 막대 + AI 설명 펼치기 */}
+      <section className="lab-reason mt-2 bg-surface-card px-5 pt-8 pb-8">
+        <h2 className="mb-4 text-[20px] font-bold text-text-primary">{SITE_CONTENT.analysis.recommendationReason.stepsTitle}</h2>
+        {p.sections.reason}
+      </section>
+
+      {/* 근거 카드들: 실거래 → 투표 (회색 띠로 나눈 납작한 흰 구획) */}
+      <div className="lab-flat mt-2 flex flex-col gap-2">
+        {p.sections.chart}
+        {p.sections.poll}
+      </div>
 
       {/* 내 집 조건 시트: 거래 · 평형 · 층 (바꾸면 위 금액이 바로 바뀐다) */}
       <ActionSheet
