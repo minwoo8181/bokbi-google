@@ -19,7 +19,6 @@ export const LAB_CONTENT = {
         legalSub: '{tradeType} 상한 요율 기준',
         discount: '추천 할인',
         discountSub: '다산동 범위 20~50%',
-        fee: '적정 복비',
       },
     },
     /** K2 평균 vs 이 단지 막대 비교 (삼쩜삼 "또래 평균 vs 나") */
@@ -39,8 +38,7 @@ export const LAB_CONTENT = {
     tabs: { home: '홈', requests: '내 의뢰', broker: '중개사', me: '내 정보' },
     home: {
       startTitle: '우리 집 복비 알아보기',
-      startLabel: '적정 복비 계산',
-      /** 2026-10-30 다시 디자인: 두 막대(법정 상한 평균 vs n% 낮게) + 그 차이 */
+      /** 2026-10-30 다시 디자인: 두 막대(법정 상한 평균 vs n% 낮게) + 그 차이. 카드 위 작은 회색 라벨은 스킬 점검으로 뺌 */
       /** {josa} = 이름 끝 받침에 따라 은/는 */
       savingsLead: '{label}{josa} 한 집 평균',
       savingsTail: ' 낮아져요',
@@ -48,9 +46,7 @@ export const LAB_CONTENT = {
       barLow: '{pct}% 낮게 정하면',
       cutLabel: '낮아지는 만큼',
       savingsCta: '우리 단지 복비 보기',
-      processLabel: '복비 진행 방식',
       partnerTitle: '다산동 공인중개사인가요?',
-      partnerLabel: '파트너 중개사',
     },
     analysis: {
       share: '공유',

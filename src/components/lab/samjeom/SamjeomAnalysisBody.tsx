@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowLeft, ChevronDown, ShieldCheck } from 'lucide-react';
 import { SITE_CONTENT } from '@/config/siteContent';
 import { LAB_CONTENT } from '@/config/labContent';
@@ -51,6 +51,15 @@ interface SamjeomAnalysisBodyProps {
  */
 export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
   const [conditionOpen, setConditionOpen] = useState(false);
+  // 바닥 바 금액은 머리 띠 금액이 화면 밖으로 나간 뒤에만 (스킬 점검: 같은 숫자가 한 화면에 두 번 보이지 않게)
+  const [heroVisible, setHeroVisible] = useState(true);
+  useEffect(() => {
+    const h1 = document.querySelector('[data-keep="K1"] h1');
+    if (!h1 || typeof IntersectionObserver === 'undefined') return;
+    const io = new IntersectionObserver(([e]) => setHeroVisible(e.isIntersecting));
+    io.observe(h1);
+    return () => io.disconnect();
+  }, []);
   const r = p.recommendation;
   const shortName = p.apartment.apt_name.replace(/\s*\([^)]*\)$/, '');
   const band = SITE_CONTENT.analysis.floorSelector.bands[p.floorCategory].label;
@@ -174,17 +183,21 @@ export default function SamjeomAnalysisBody(p: SamjeomAnalysisBodyProps) {
           {SITE_CONTENT.analysis.stickyBar.securityGuarantee}
         </p>
         <div className="px-4 pt-3 pb-[calc(env(safe-area-inset-bottom)+12px)] flex items-center gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="text-[12px] text-text-tertiary truncate">
-              {t.barFee} · {t.barLegal.replace('{amount}', formatWon(p.legalMaxWon))}
-            </p>
-            <p className="text-[17px] font-bold text-text-primary tabular-nums truncate">{formatWon(p.totalCommissionWon)}</p>
-          </div>
+          {!heroVisible && (
+            <div className="min-w-0 flex-1" data-testid="samjeom-bar-amount">
+              <p className="text-[12px] text-text-tertiary truncate">
+                {t.barFee} · {t.barLegal.replace('{amount}', formatWon(p.legalMaxWon))}
+              </p>
+              <p className="text-[17px] font-bold text-text-primary tabular-nums truncate">{formatWon(p.totalCommissionWon)}</p>
+            </div>
+          )}
           <button
             type="button"
             data-testid="matching-sticky-cta"
             onClick={p.onOpenModal}
-            className="h-13 px-5 flex-shrink-0 rounded-xl bg-brand text-text-inverse text-[15px] font-bold active:scale-[0.99] transition-transform duration-fast"
+            className={`h-13 px-5 rounded-xl bg-brand text-text-inverse text-[15px] font-bold active:scale-[0.99] transition-transform duration-fast ${
+              heroVisible ? 'flex-1' : 'flex-shrink-0'
+            }`}
           >
             {SITE_CONTENT.analysis.stickyBar.ctaDefaultText}
           </button>

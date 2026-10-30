@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ChevronRight } from 'lucide-react';
 import { SITE_CONTENT } from '@/config/siteContent';
 import { LAB_CONTENT } from '@/config/labContent';
 import { formatPriceTenThousand } from '@/lib/utils';
@@ -24,24 +23,6 @@ export function SectionTitle({ children, id }: { children: React.ReactNode; id?:
     <h2 id={id} className="px-1 pt-8 pb-3 text-[20px] font-bold text-text-primary scroll-mt-16">
       {children}
     </h2>
-  );
-}
-
-/** 카드 맨 위 작은 회색 라벨 + 꺾쇠 (삼쩜삼 "종합소득세 환급 >") */
-export function CardLabel({ children, onClick }: { children: React.ReactNode; onClick?: () => void }) {
-  const inner = (
-    <>
-      <span>{children}</span>
-      <ChevronRight className="w-4 h-4" aria-hidden />
-    </>
-  );
-  const cls = 'w-full min-h-[44px] -mt-3 flex items-center justify-between text-[13px] font-medium text-text-tertiary';
-  return onClick ? (
-    <button type="button" onClick={onClick} className={cls}>
-      {inner}
-    </button>
-  ) : (
-    <div className={cls}>{inner}</div>
   );
 }
 
@@ -141,8 +122,7 @@ export function SamjeomProcessCard({ onMore }: { onMore: () => void }) {
   return (
     <>
       <SectionTitle>{process.sectionTitle}</SectionTitle>
-      <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-5" data-testid="home-process">
-        <CardLabel onClick={onMore}>{t.processLabel}</CardLabel>
+      <section className="rounded-2xl bg-surface-card px-5 pt-2 pb-5" data-testid="home-process">
         <ul className="divide-y divide-border-light">
           {process.steps.map((step) => (
             <li key={step.title} className="py-4">

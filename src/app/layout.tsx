@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
+  // design-lab 스킬 점검 (2026-10-30): 확대 막기(maximumScale 1·userScalable false)는 저시력 사용자가 글자를 키울 수 없어
+  // web-design-guidelines가 꼭 짚는 항목이라 풀었다. 원본에 옮길 땐 iOS 입력칸 자동 확대(16px 미만 입력 글자)를 같이 확인
   themeColor: '#FFFFFF',
 };
 

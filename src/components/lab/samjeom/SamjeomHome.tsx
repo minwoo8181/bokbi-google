@@ -13,7 +13,7 @@ import HomeGuideSheet from '@/components/home/HomeGuideSheet';
 import HomeFooter from '@/components/home/HomeFooter';
 import KeepProgressSteps from '@/components/lab/keeps/KeepProgressSteps';
 import SamjeomTabBar from './SamjeomTabBar';
-import { CardLabel, SamjeomProcessCard, SamjeomSavingsCard, SectionTitle } from './SamjeomHomeCards';
+import { SamjeomProcessCard, SamjeomSavingsCard, SectionTitle } from './SamjeomHomeCards';
 
 const t = LAB_CONTENT.samjeom.home;
 
@@ -43,9 +43,8 @@ export default function SamjeomHome({ complexes, examples }: { complexes: Search
 
       <main className="px-4">
         <SectionTitle>{t.startTitle}</SectionTitle>
-        <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-6">
-          <CardLabel onClick={() => setGuide('owner')}>{t.startLabel}</CardLabel>
-          <p className="mt-1 text-[17px] font-bold text-text-primary leading-snug">
+        <section className="rounded-2xl bg-surface-card px-5 pt-6 pb-6">
+          <p className="text-[17px] font-bold text-text-primary leading-snug">
             <FormattedText text={hero.title} highlightClassName="text-brand" />
           </p>
           <div className="mt-4">
@@ -62,9 +61,8 @@ export default function SamjeomHome({ complexes, examples }: { complexes: Search
         <SamjeomProcessCard onMore={() => setGuide('owner')} />
 
         <SectionTitle>{t.partnerTitle}</SectionTitle>
-        <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-6" data-testid="home-partner">
-          <CardLabel onClick={() => setGuide('broker')}>{t.partnerLabel}</CardLabel>
-          <p className="mt-1 text-[17px] font-bold text-text-primary leading-snug whitespace-pre-line">{partnerBanner.title}</p>
+        <section className="rounded-2xl bg-surface-card px-5 pt-6 pb-6" data-testid="home-partner">
+          <p className="text-[17px] font-bold text-text-primary leading-snug whitespace-pre-line">{partnerBanner.title}</p>
           <button
             type="button"
             onClick={() => setGuide('broker')}

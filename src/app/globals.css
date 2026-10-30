@@ -250,6 +250,10 @@
 [data-theme="samjeom"] .lab-reason [data-testid="reason-summary"] > .grid {
   display: none;
 }
+/* 실거래 그래프 축 날짜 11px·막대 위 거래 수 10px → 12px (스킬 점검: 글자 12px 이상, ui-ux-pro-max §6 · taste 앱 §6.3) */
+[data-theme="samjeom"] [data-testid="trade-card"] svg :is(text, tspan) {
+  font-size: 12px;
+}
 /* 원래 카드 제목(17px)을 리포트 구획 제목 크기로 */
 [data-theme="samjeom"] .lab-flat > * > h2:first-child,
 [data-theme="samjeom"] .lab-flat > * > div:first-child h2 {

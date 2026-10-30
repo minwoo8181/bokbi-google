@@ -1,5 +1,4 @@
 import React from 'react';
-import { ReceiptText } from 'lucide-react';
 import { LAB_CONTENT } from '@/config/labContent';
 import { formatPriceTenThousand, formatWon } from '@/lib/utils';
 import type { ReferencePrice, TradeType } from '@/components/analysis/types';
@@ -9,8 +8,8 @@ const t = LAB_CONTENT.keeps.feeReport;
 
 /**
  * 🔖 킵 K1 (2026-10-30, 출처 삼쩜삼 리포트): 분석 머리 띠 + 근거 목록.
- * 연파랑 띠 위 맥락 한 줄 → "적정 복비는 / {금액}이에요" 두 줄(금액만 파랑) → 기준 실거래 한 줄 → 아이콘,
- * 아래 흰 목록(최근 실거래 · 법정 상한 · 추천 할인 · 적정 복비). top = 띠 맨 위 줄(뒤로·공유 등)
+ * 연파랑 띠 위 맥락 한 줄 → "적정 복비는 / {금액}이에요" 두 줄(금액만 파랑, 40px) → 기준 실거래 한 줄,
+ * 아래 흰 목록(최근 실거래 · 법정 상한 · 추천 할인). top = 띠 맨 위 줄(뒤로·공유 등)
  */
 export default function KeepFeeReportHero({
   top,
@@ -54,17 +53,12 @@ export default function KeepFeeReportHero({
             {t.heroBasis.replace('{deal}', formatPriceTenThousand(ref.priceManwon)).replace('{when}', when)}
           </p>
         )}
-        <div className="mt-6 flex justify-end" aria-hidden>
-          <span className="w-16 h-16 rounded-full bg-surface-card flex items-center justify-center">
-            <ReceiptText className="w-8 h-8 text-brand" />
-          </span>
-        </div>
       </section>
+      {/* 2026-10-30 스킬 점검: 동그라미 안 영수증 아이콘(taste 아이콘 칩)과 목록 끝 "적정 복비" 줄(위 금액과 같은 사실) 삭제 */}
       <ul className="bg-surface-card px-5 py-2 divide-y divide-border-light">
         {ref && <ReportRow label={t.rows.deal} sub={ref.date ?? undefined} value={formatPriceTenThousand(ref.priceManwon)} />}
         <ReportRow label={t.rows.legal} sub={t.rows.legalSub.replace('{tradeType}', tradeType)} value={formatWon(legalMaxWon)} />
         {discountPct !== null && <ReportRow label={t.rows.discount} sub={t.rows.discountSub} value={`${discountPct}%`} />}
-        <ReportRow label={t.rows.fee} value={formatWon(totalWon)} strong />
       </ul>
     </>
   );
