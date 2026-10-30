@@ -174,6 +174,82 @@
   --status-good-line: color-mix(in srgb, var(--status-good) 25%, var(--status-good-light));
 }
 
+/* ==========================================================================
+   🧪 design-lab 실험 테마 (복사본 전용). 공통 블록보다 뒤에 둬야 brand-line 등을 덮어쓴다
+   🧾 samjeom — wwit.design 삼쩜삼 2024 캡처 픽셀 실측: 파랑 #2377F7 한 가지, 연파랑 띠 #E9F2FF, 회색 바탕 #F4F6F8
+   ========================================================================== */
+[data-theme="samjeom"] {
+  --brand-primary: #2377F7;
+  /* 연파랑 위 작은 글씨용 (#E9F2FF 위 4.9:1) */
+  --brand-primary-hover: #1A62D6;
+  --brand-primary-active: #1550B0;
+  --brand-primary-light: #E9F2FF;
+  --brand-primary-subtle: #F4F8FF;
+  --brand-glow: rgba(35, 119, 247, 0.16);
+  --text-primary: #191F28;
+  --text-secondary: #4E5968;
+  --text-tertiary: #636E7B;
+  --text-disabled: #B0B8C1;
+  --bg-page: #F4F6F8;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F4F6F8;
+  --bg-highlight: #E9F2FF;
+  --border-light: #F2F4F6;
+  --border-default: #E5E8EB;
+  --border-focused: #2377F7;
+  --brand-line: color-mix(in srgb, #2377F7 25%, #FFFFFF);
+  --brand-line-strong: color-mix(in srgb, #2377F7 45%, #FFFFFF);
+  /* "다산동 평균" 비교 막대 (삼쩜삼 "또래 평균" 노랑) */
+  --lab-compare: #FFB020;
+}
+/* 포커스·눌림 (web-design-guidelines Focus, ui-ux-pro-max Interaction) */
+[data-theme="samjeom"] :is(a, button, [role="radio"], [role="tab"]):focus-visible {
+  outline: 2px solid var(--brand-primary);
+  outline-offset: 2px;
+}
+[data-theme="samjeom"] :is(a, button, [role="radio"], [role="tab"]) {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  transition-property: opacity, transform, background-color, border-color, color;
+  transition-duration: 120ms;
+}
+[data-theme="samjeom"] :is(a, button, [role="radio"], [role="tab"]):active {
+  opacity: 0.72;
+}
+/* 근거 구획 안에 넣는 원래 카드: 상자를 벗겨 리포트 구획에 녹인다 */
+[data-theme="samjeom"] .lab-flat > * {
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+/* 원래 카드 제목 줄은 구획 제목과 겹쳐 숨긴다 (같은 말 두 번 금지) */
+[data-theme="samjeom"] .lab-flat [data-testid="reason-card"] > div:first-child,
+[data-theme="samjeom"] .lab-flat [data-testid="reason-summary"] > .grid {
+  display: none;
+}
+/* 홈 검색창: 굵은 검정 명패 → 삼쩜삼 회색 칸 (원래 부품 파일은 그대로, 이 테마에서만 모양을 덮는다) */
+[data-theme="samjeom"] form:has(> #home-search-input) {
+  height: 52px;
+  border-radius: 12px;
+  border-color: transparent;
+  background: var(--bg-subtle);
+  box-shadow: none;
+}
+[data-theme="samjeom"] form:has(> #home-search-input):focus-within {
+  border-color: var(--brand-primary);
+  background: var(--bg-surface);
+}
+[data-theme="samjeom"] .lab-flat button[aria-label$="투표 주제"] {
+  min-width: 44px;
+  min-height: 44px;
+}
+/* 실거래 그래프 축·막대 숫자 10~11px → 12px (Recharts가 style로 직접 붙여 !important) */
+[data-theme="samjeom"] [data-testid="trade-card"] svg :is(text, tspan) {
+  font-size: 12px !important;
+}
+
 html, body {
   word-break: keep-all;
   overflow-wrap: break-word;

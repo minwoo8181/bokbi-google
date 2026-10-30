@@ -9,7 +9,8 @@
  *   토스 라이트 서피스(#F2F4F6) 단일 기준에 맞춰 렌더링됩니다.
  */
 
-export type ThemePreset = 'toss';
+// design-lab 복사본: 원본 토스 + 레퍼런스 실험 테마 (전환 버튼 components/lab/ThemeLabSwitcher, 색은 globals.css [data-theme])
+export type ThemePreset = 'toss' | 'samjeom';
 
 export interface ThemeDefinition {
   id: ThemePreset;
@@ -27,9 +28,19 @@ export const THEME_PRESETS: Record<ThemePreset, ThemeDefinition> = {
     primaryColor: '#0064FF',
     lightColor: '#EBF3FF',
   },
+  samjeom: {
+    id: 'samjeom',
+    name: '삼쩜삼 레퍼런스',
+    description: '삼쩜삼 리포트 흐름: 단지 → 얼마 → 왜 → 실거래 기준 → 우리 집 → 매칭 요청, 중개사 보기 따로',
+    primaryColor: '#2377F7',
+    lightColor: '#E9F2FF',
+  },
 };
 
 /**
  * ⚡ 활성화 테마: 토스 라이트 (영구 확정)
  */
 export const CURRENT_THEME: ThemePreset = 'toss';
+
+/** design-lab: 전환 버튼이 고른 테마를 저장하는 키 (e2e는 저장값이 없어 원본 토스로 검사) */
+export const LAB_THEME_STORAGE_KEY = 'bokbi_lab_theme';

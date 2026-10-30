@@ -3,6 +3,7 @@ import './globals.css';
 import { CURRENT_THEME } from '@/theme/themeConfig';
 import GlobalClientErrorGuard from '@/components/shared/GlobalClientErrorGuard';
 import PageVisitTracker from '@/components/shared/PageVisitTracker';
+import ThemeLabSwitcher, { THEME_BOOT_SCRIPT } from '@/components/lab/ThemeLabSwitcher';
 
 export const metadata: Metadata = {
   title: '복비 - 데이터로 합의하는 새로운 복비',
@@ -23,8 +24,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" data-theme={CURRENT_THEME}>
+    <html lang="ko" data-theme={CURRENT_THEME} suppressHydrationWarning>
       <head>
+        {/* design-lab: 저장된 실험 테마를 첫 그림 전에 붙인다 */}
+        <script dangerouslySetInnerHTML={{ __html: THEME_BOOT_SCRIPT }} />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
@@ -36,6 +39,7 @@ export default function RootLayout({
           <div className="mobile-app-frame">
             {children}
           </div>
+          <ThemeLabSwitcher />
         </GlobalClientErrorGuard>
       </body>
     </html>
