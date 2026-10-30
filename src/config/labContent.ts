@@ -48,6 +48,12 @@ export const LAB_CONTENT = {
       savingsCta: '우리 단지 복비 보기',
       partnerTitle: '다산동 공인중개사인가요?',
     },
+    /** 매칭 요청 창 = 삼쩜삼 신고 흐름 (전체 화면 단계 페이지) */
+    flow: {
+      back: '이전 단계',
+      /** {n}/{total} 단계 */
+      progress: '{n} / {total}',
+    },
     analysis: {
       share: '공유',
       /** 머리 띠 조건 칩 → 시트 (2026-10-30 CTA 재배치: 조건을 금액 바로 위로) */
