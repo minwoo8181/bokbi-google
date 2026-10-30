@@ -15,10 +15,6 @@ import type { HomeFacts } from '@/lib/home/homeStats';
 import { homeComplexExamples } from '@/lib/home/homeMarket';
 import LabThemeView from '@/components/lab/LabThemeView';
 import SamjeomHome from '@/components/lab/samjeom/SamjeomHome';
-import { complexFeedItems } from '@/lib/lab/complexFeed';
-
-/** design-lab 레퍼런스 홈의 단지 목록 (단지마다 분석 첫 화면과 같은 금액, 데이터 파일 기준) */
-const COMPLEX_FEED = complexFeedItems();
 
 /** 홈 숫자 카드 1단계 사실 숫자 (데이터 파일 기준 — 데이터를 다시 만들면 같이 바뀜) */
 const HOME_FACTS: HomeFacts = {
@@ -35,7 +31,7 @@ export default function HomePage() {
   const complexes = getSearchIndex();
   return (
     <LabThemeView
-      samjeom={<SamjeomHome feed={COMPLEX_FEED} complexes={complexes} examples={HOME_EXAMPLES} />}
+      samjeom={<SamjeomHome complexes={complexes} examples={HOME_EXAMPLES} />}
     >
     <div className="flex flex-col min-h-[100dvh] bg-surface-page">
       {/* ── GNB 헤더 ── */}

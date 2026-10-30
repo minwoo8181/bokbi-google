@@ -3,11 +3,8 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { Building2, ChevronRight, Megaphone } from 'lucide-react';
 import { SITE_CONTENT } from '@/config/siteContent';
 import { LAB_CONTENT } from '@/config/labContent';
-import { formatWon } from '@/lib/utils';
-import type { ComplexFeedItem } from '@/lib/lab/complexFeed';
 import type { HomeComplexExample } from '@/lib/home/homeMarket';
 import BrandLogo from '@/components/common/BrandLogo';
 import FormattedText from '@/components/common/FormattedText';
@@ -19,27 +16,16 @@ import SamjeomTabBar from './SamjeomTabBar';
 import { CardLabel, SamjeomProcessCard, SamjeomSavingsCard, SectionTitle } from './SamjeomHomeCards';
 
 const t = LAB_CONTENT.samjeom.home;
-/** 목록 카드에 처음 보이는 줄 수 (나머지는 "단지 전체 보기") */
-const FIRST_ROWS = 5;
 
 /**
  * design-lab 삼쩜삼 홈 (레퍼런스: 삼쩜삼 2024 홈). 회색 바탕 위 "구획 제목 → 흰 카드" 묶음:
- * 알림 줄 → 우리 집 복비 알아보기(검색 + 킵 K3 진행 단계 막대) → 예시 단지 카드 → 단지 복비 목록 → 왜 다를까요 → 중개사 카드 → 바닥글 → 탭 바
+ * 우리 집 복비 알아보기(검색 + 킵 K3 진행 단계 막대) → 예시 단지 막대 카드 → 왜 다를까요 → 중개사 카드 → 바닥글 → 탭 바.
+ * 주 버튼은 검색 하나 — 카드 아래 버튼은 연파랑 보조 (2026-10-30: 알림 줄·단지 목록은 대표님이 뺌)
  */
-export default function SamjeomHome({
-  feed,
-  complexes,
-  examples,
-}: {
-  feed: ComplexFeedItem[];
-  complexes: SearchComplex[];
-  examples: HomeComplexExample[];
-}) {
+export default function SamjeomHome({ complexes, examples }: { complexes: SearchComplex[]; examples: HomeComplexExample[] }) {
   const router = useRouter();
-  const [showAll, setShowAll] = useState(false);
   const [guide, setGuide] = useState<'owner' | 'broker' | null>(null);
   const { hero, partnerBanner, brokerGuide, stats } = SITE_CONTENT.home;
-  const rows = showAll ? feed : feed.slice(0, FIRST_ROWS);
   const focusSearch = () => {
     const input = document.getElementById('home-search-input');
     input?.scrollIntoView({ block: 'center' });
@@ -56,18 +42,6 @@ export default function SamjeomHome({
       </header>
 
       <main className="px-4">
-        {/* 알림 줄 (삼쩜삼 "새로 나왔어요") → 단지 목록으로 */}
-        <a href="#lab-complex-list" className="mt-2 min-h-[64px] px-4 py-3 rounded-2xl bg-surface-card flex items-center gap-3">
-          <span className="w-10 h-10 rounded-full bg-brand-light flex items-center justify-center flex-shrink-0">
-            <Megaphone className="w-5 h-5 text-brand" aria-hidden />
-          </span>
-          <span className="min-w-0 flex-1">
-            <span className="block text-[12px] font-medium text-brand-hover">{t.notice.label}</span>
-            <span className="block text-[15px] font-bold text-text-primary truncate">{t.notice.text.replace('{n}', String(feed.length))}</span>
-          </span>
-          <ChevronRight className="w-5 h-5 text-text-disabled flex-shrink-0" aria-hidden />
-        </a>
-
         <SectionTitle>{t.startTitle}</SectionTitle>
         <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-6">
           <CardLabel onClick={() => setGuide('owner')}>{t.startLabel}</CardLabel>
@@ -83,40 +57,7 @@ export default function SamjeomHome({
         </section>
 
         <SectionTitle>{stats.sectionTitle}</SectionTitle>
-        <SamjeomSavingsCard examples={examples} />
-
-        <SectionTitle id="lab-complex-list">{t.listTitle}</SectionTitle>
-        <section className="rounded-2xl bg-surface-card px-5 pt-5 pb-5">
-          <CardLabel>{t.listLabel}</CardLabel>
-          <ul>
-            {rows.map((i) => (
-              <li key={i.id}>
-                <Link href={`/analysis/${i.id}`} className="min-h-[64px] py-2 flex items-center gap-3">
-                  <span className="w-10 h-10 rounded-xl bg-brand-light flex items-center justify-center flex-shrink-0">
-                    <Building2 className="w-5 h-5 text-brand" aria-hidden />
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block text-[15px] font-medium text-text-primary truncate">{i.name}</span>
-                    <span className="block text-[13px] text-text-tertiary">
-                      {i.pyeongName.replace(/\s*\(.*\)$/, '')} ·{' '}
-                      <span className="font-bold text-brand-hover">{t.rowFee.replace('{amount}', formatWon(i.recommendedWon))}</span>
-                    </span>
-                  </span>
-                  <ChevronRight className="w-5 h-5 text-text-disabled flex-shrink-0" aria-hidden />
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <button
-            type="button"
-            onClick={() => setShowAll((v) => !v)}
-            aria-expanded={showAll}
-            className="mt-3 w-full h-12 rounded-xl bg-brand text-text-inverse text-[15px] font-bold active:scale-[0.99] transition-transform duration-fast"
-          >
-            {showAll ? t.showLess : t.showAll.replace('{n}', String(feed.length))}
-          </button>
-          <p className="mt-3 text-[12px] text-text-tertiary">{t.basis}</p>
-        </section>
+        <SamjeomSavingsCard examples={examples} onCta={focusSearch} />
 
         <SamjeomProcessCard onMore={() => setGuide('owner')} />
 
@@ -127,7 +68,7 @@ export default function SamjeomHome({
           <button
             type="button"
             onClick={() => setGuide('broker')}
-            className="mt-5 w-full h-12 rounded-xl bg-brand text-text-inverse text-[15px] font-bold active:scale-[0.99] transition-transform duration-fast"
+            className="mt-5 w-full h-12 rounded-xl bg-brand-light text-brand-hover text-[15px] font-bold active:scale-[0.99] transition-transform duration-fast"
           >
             {partnerBanner.buttonText}
           </button>

@@ -22,7 +22,8 @@ export default function KeepFeeReportHero({
   tradeType,
 }: {
   top?: React.ReactNode;
-  contextLine: string;
+  /** 띠 맨 위 맥락 줄. 글자면 회색 한 줄, 요소면 그대로 (예: 조건 칩) */
+  contextLine: React.ReactNode;
   totalWon: number;
   legalMaxWon: number;
   reference: ReferencePrice | null;
@@ -36,7 +37,11 @@ export default function KeepFeeReportHero({
     <>
       <section className="bg-brand-light px-5 pb-8" data-keep="K1">
         {top}
-        <p className="mt-2 text-[15px] font-medium text-text-secondary">{contextLine}</p>
+        {typeof contextLine === 'string' ? (
+          <p className="mt-2 text-[15px] font-medium text-text-secondary">{contextLine}</p>
+        ) : (
+          <div className="mt-2">{contextLine}</div>
+        )}
         <h1 className="mt-2 text-[26px] font-bold text-text-primary leading-[1.35]">
           {t.heroLead}
           <br />
