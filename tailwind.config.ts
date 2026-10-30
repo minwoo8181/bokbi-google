@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -77,13 +76,6 @@ const config: Config = {
         ],
       },
       borderRadius: {
-        // 🧪 design-lab: 테마마다 모서리를 바꿀 수 있게 기본 단계를 CSS 변수로 (없으면 Tailwind 기본값 그대로)
-        sm: "var(--r-sm, 0.125rem)",
-        md: "var(--r-md, 0.375rem)",
-        lg: "var(--r-lg, 0.5rem)",
-        xl: "var(--r-xl, 0.75rem)",
-        "2xl": "var(--r-2xl, 1rem)",
-        "3xl": "var(--r-3xl, 1.5rem)",
         "theme-sm": "var(--radius-sm)",
         "theme-md": "var(--radius-md)",
         "theme-lg": "var(--radius-lg)",
@@ -130,13 +122,6 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    // 🧪 design-lab: 레퍼런스 테마일 때만 붙는 표기 (예: samjeom:pb-0). 색 토큰만으로 안 되는 모양 차이에 쓴다
-    plugin(({ addVariant }) => {
-      // 삼쩜삼 심화(samjeom2)는 삼쩜삼 색·부품을 그대로 쓴다
-      addVariant("samjeom", ':is([data-theme="samjeom"], [data-theme="samjeom2"]) &');
-      addVariant("heydealer", '[data-theme="heydealer"] &');
-    }),
-  ],
+  plugins: [],
 };
 export default config;

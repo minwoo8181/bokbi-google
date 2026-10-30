@@ -14,42 +14,12 @@ import StepDongHo from './matching/StepDongHo';
 import StepOwnerVerify from './matching/StepOwnerVerify';
 import StepFinalPledge from './matching/StepFinalPledge';
 import StepComplete from './matching/StepComplete';
-import { useLabTheme } from '@/components/lab/useLabTheme';
-import SamjeomFlowShell from '@/components/lab/samjeom/SamjeomFlowShell';
 
 export default function MatchingBottomSheetModal(props: MatchingBottomSheetModalProps) {
   const form = useMatchingForm(props);
-  const labTheme = useLabTheme();
   const { isOpen, onClose, apartment, modalStep, currentTradeType, currentPyeong } = form;
 
   if (!isOpen) return null;
-
-  const steps = (
-    <>
-      {modalStep === 'TRADE_PYEONG' && <StepTradePyeong form={form} />}
-      {modalStep === 'PRICE_MOVEIN' && <StepPriceMoveIn form={form} />}
-      {modalStep === 'FEE' && <StepFee form={form} />}
-      {modalStep === 'DONG_HO' && <StepDongHo form={form} />}
-      {modalStep === 'OWNER_VERIFY' && <StepOwnerVerify form={form} />}
-      {modalStep === 'FINAL_PLEDGE' && <StepFinalPledge form={form} />}
-      {modalStep === 'COMPLETE' && <StepComplete form={form} />}
-    </>
-  );
-  const close = () => onClose({ completed: modalStep === 'COMPLETE' });
-
-  // design-lab: 삼쩜삼 테마는 아래 시트 대신 전체 화면 신고 흐름 (단계 화면·상태는 같은 것)
-  if (labTheme === 'samjeom' || labTheme === 'samjeom2') {
-    return (
-      <SamjeomFlowShell
-        step={modalStep}
-        context={`${apartment.apt_name} · ${currentPyeong.name} · ${currentTradeType}`}
-        onBack={modalStep === 'TRADE_PYEONG' ? close : form.goPrev}
-        onClose={close}
-      >
-        {steps}
-      </SamjeomFlowShell>
-    );
-  }
 
   return (
     <div
@@ -70,7 +40,7 @@ export default function MatchingBottomSheetModal(props: MatchingBottomSheetModal
             </span>
           </div>
           {/* 닫기 X 통일 (2026-10-27): 글자 "닫기" → 다른 시트와 같은 X */}
-          <CloseButton testId="modal-close-btn" onClick={close} className="-my-2 -mr-2" />
+          <CloseButton testId="modal-close-btn" onClick={() => onClose({ completed: modalStep === 'COMPLETE' })} className="-my-2 -mr-2" />
         </div>
 
         {/* 진행 표시: 단계 이름 동그라미 (예전 얇은 막대 대신, 2026-10-27 대표님 최종 시안). 완료 화면에서는 숨김 */}
@@ -82,7 +52,15 @@ export default function MatchingBottomSheetModal(props: MatchingBottomSheetModal
         {modalStep === 'COMPLETE' && <div className="border-b border-border-light" />}
 
         {/* 바텀시트 스크롤 본문 */}
-        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 pb-8 space-y-5">{steps}</div>
+        <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-4 pb-8 space-y-5">
+          {modalStep === 'TRADE_PYEONG' && <StepTradePyeong form={form} />}
+          {modalStep === 'PRICE_MOVEIN' && <StepPriceMoveIn form={form} />}
+          {modalStep === 'FEE' && <StepFee form={form} />}
+          {modalStep === 'DONG_HO' && <StepDongHo form={form} />}
+          {modalStep === 'OWNER_VERIFY' && <StepOwnerVerify form={form} />}
+          {modalStep === 'FINAL_PLEDGE' && <StepFinalPledge form={form} />}
+          {modalStep === 'COMPLETE' && <StepComplete form={form} />}
+        </div>
       </div>
     </div>
   );

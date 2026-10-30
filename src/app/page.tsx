@@ -13,10 +13,6 @@ import market from '@/data/market/dasan-market.json';
 import offices from '@/data/brokers/dasan-offices.json';
 import type { HomeFacts } from '@/lib/home/homeStats';
 import { homeComplexExamples } from '@/lib/home/homeMarket';
-import LabThemeView from '@/components/lab/LabThemeView';
-import SamjeomHome from '@/components/lab/samjeom/SamjeomHome';
-import Samjeom2Home from '@/components/lab/samjeom2/Samjeom2Home';
-import HeydealerHome from '@/components/lab/heydealer/HeydealerHome';
 
 /** 홈 숫자 카드 1단계 사실 숫자 (데이터 파일 기준 — 데이터를 다시 만들면 같이 바뀜) */
 const HOME_FACTS: HomeFacts = {
@@ -32,11 +28,6 @@ const HOME_EXAMPLES = homeComplexExamples(market.complexes, market.meta.observed
 export default function HomePage() {
   const complexes = getSearchIndex();
   return (
-    <LabThemeView
-      samjeom={<SamjeomHome complexes={complexes} examples={HOME_EXAMPLES} />}
-      samjeom2={<Samjeom2Home complexes={complexes} examples={HOME_EXAMPLES} offices={HOME_FACTS.offices} />}
-      heydealer={<HeydealerHome complexes={complexes} examples={HOME_EXAMPLES} facts={HOME_FACTS} />}
-    >
     <div className="flex flex-col min-h-[100dvh] bg-surface-page">
       {/* ── GNB 헤더 ── */}
       <HomeHeader />
@@ -70,6 +61,5 @@ export default function HomePage() {
       {/* 바닥 고정 "우리 집 복비 얼마?" → 검색창으로 */}
       <HomeFloatingCta />
     </div>
-    </LabThemeView>
   );
 }
