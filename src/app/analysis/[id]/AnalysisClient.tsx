@@ -21,8 +21,6 @@ import DebateBottomSheetModal, { DebateTopic } from '@/components/analysis/Debat
 import MatchingStickyBar from '@/components/analysis/MatchingStickyBar';
 import MatchingBottomSheetModal from '@/components/analysis/MatchingBottomSheetModal';
 import { useAnalysisTracking } from '@/components/analysis/useAnalysisTracking';
-import { useLabTheme } from '@/components/lab/useLabTheme';
-import SamjeomAnalysis from '@/components/lab/samjeom/SamjeomAnalysis';
 import {
   TradeType,
   FloorCategory,
@@ -44,7 +42,6 @@ function defaultPyeongId(list: AnalysisBundle['pyeongList']): string {
 
 export default function AnalysisClient({ apartment, pyeongList, observedAt, datasetStats, units, debates: initialDebates, complexInfo }: AnalysisBundle) {
   const router = useRouter();
-  const labTheme = useLabTheme();
 
   // 2. 핵심 인터랙션 상태
   const [tradeType, setTradeType] = useState<TradeType>('매매');
@@ -198,56 +195,8 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
     }
   };
 
-  // 근거 카드 3개: 원래 화면과 design-lab 삼쩜삼 화면이 같은 요소를 쓴다
-  const reasonCard = (
-    <RecommendationReasonCard
-      tradeType={tradeType}
-      recommendation={recommendation}
-      observedAt={observedAt}
-      datasetStats={datasetStats}
-      complexId={apartment.id}
-      pyeongId={selectedPyeong.id}
-      floorCategory={floorCategory}
-    />
-  );
-  const chartCard = (
-    <HokimTradeChartCard pyeong={selectedPyeong} floorCategory={floorCategory} floorLabel={floorLabel} tradeType={tradeType} reference={reference} />
-  );
-  const debatePoll = (
-    <EndgameDebatePoll
-      apartmentName={apartment.apt_name}
-      debates={debates}
-      userVotes={userDebateVotes}
-      onVote={handleDebateVote}
-      onOpenDebateModal={() => setIsDebateModalOpen(true)}
-    />
-  );
-
   return (
-    <div className={`flex flex-col min-h-[100dvh] bg-surface-page ${labTheme === 'samjeom' ? '' : 'pb-28'}`}>
-      {labTheme === 'samjeom' ? (
-        // design-lab 삼쩜삼 실험 화면: 같은 계산 값, 배치만 다르다 (components/lab/samjeom/SamjeomAnalysis)
-        <SamjeomAnalysis
-          apartment={apartment}
-          complexInfo={complexInfo}
-          pyeongList={pyeongList}
-          selectedPyeong={selectedPyeong}
-          onSelectPyeong={setSelectedPyeongId}
-          tradeType={tradeType}
-          onChangeTradeType={setTradeType}
-          floorCategory={floorCategory}
-          onSelectFloor={setFloorCategory}
-          reference={reference}
-          recommendation={recommendation}
-          totalCommissionWon={totalCommissionWon}
-          legalMaxWon={quote.legal.maxWon}
-          onBack={() => router.push('/')}
-          onShare={handleShare}
-          onOpenModal={() => setIsModalOpen(true)}
-          sections={{ chart: chartCard, reason: reasonCard, poll: debatePoll }}
-        />
-      ) : (
-      <>
+    <div className="flex flex-col min-h-[100dvh] bg-surface-page pb-28">
       {/* ── GNB 상단 헤더 ── */}
       <AnalysisHeader
         apartmentName={apartment.apt_name}
@@ -289,19 +238,37 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
         />
 
         {/* ⑤-1 추천 근거: 복비 카드 바로 아래 (대표님 지시 2026-10-22) — 수요·공급 위치 → 거래가 규모 → 추천 할인 계산 */}
-        {reasonCard}
+        <RecommendationReasonCard
+          tradeType={tradeType}
+          recommendation={recommendation}
+          observedAt={observedAt}
+          datasetStats={datasetStats}
+          complexId={apartment.id}
+          pyeongId={selectedPyeong.id}
+          floorCategory={floorCategory}
+        />
 
         {/* ⑥ 내 집 맞춤 진단 배너는 복비 카드 매칭 유도·하단 바와 같은 행동이라 화면에서 내림 (파일 유지, 대표님 승인 2026-10-24) */}
 
         {/* ⑦ [팩트 확인] 호갱노노 스타일 2개년 Recharts 추세선 + 거래량 바 + 국토부 실제 계약 목록 테이블 */}
-        {chartCard}
+        <HokimTradeChartCard
+          pyeong={selectedPyeong}
+          floorCategory={floorCategory}
+          floorLabel={floorLabel}
+          tradeType={tradeType}
+          reference={reference}
+        />
 
         {/* ⑨ 실시간 주민 끝장 토론 롤링 카드 (원터치 투표 & 풀 바텀시트 트리거) */}
-        {debatePoll}
+        <EndgameDebatePoll
+          apartmentName={apartment.apt_name}
+          debates={debates}
+          userVotes={userDebateVotes}
+          onVote={handleDebateVote}
+          onOpenDebateModal={() => setIsDebateModalOpen(true)}
+        />
         {/* 매칭 사례 피드는 홈 1·2 섹션 사이로 옮김 (HomeMatchTicker, 대표님 2026-10-28) */}
       </main>
-      </>
-      )}
 
       {/* ── 주민 끝장 토론 전체보기 및 의견 피드 풀 바텀시트 모달 ── */}
       <DebateBottomSheetModal
@@ -314,14 +281,12 @@ export default function AnalysisClient({ apartment, pyeongList, observedAt, data
       />
 
       {/* ── 하단 고정 액션 바 (안심 가드레일 인포그래픽 바 + 동적 절약액 반영 CTA) ── */}
-      {labTheme !== 'samjeom' && (
-        <MatchingStickyBar
-          legalMaxWon={quote.legal.maxWon}
-          savedWon={savedWon}
-          totalCommissionWon={totalCommissionWon}
-          onOpenModal={() => setIsModalOpen(true)}
-        />
-      )}
+      <MatchingStickyBar
+        legalMaxWon={quote.legal.maxWon}
+        savedWon={savedWon}
+        totalCommissionWon={totalCommissionWon}
+        onOpenModal={() => setIsModalOpen(true)}
+      />
 
       {/* ── 네이버 확인매물 연동 매물 등록 마법사 모달 (모달 내 거래유형·평형 스위처 연동) ── */}
       <MatchingBottomSheetModal

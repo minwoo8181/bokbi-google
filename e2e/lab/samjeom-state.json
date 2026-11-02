@@ -1,9 +1,0 @@
-{
-  "cookies": [],
-  "origins": [
-    {
-      "origin": "http://localhost:3006",
-      "localStorage": [{ "name": "bokbi_lab_theme", "value": "samjeom" }]
-    }
-  ]
-}
